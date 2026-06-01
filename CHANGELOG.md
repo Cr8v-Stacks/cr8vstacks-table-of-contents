@@ -82,6 +82,7 @@
 - Reduced Hide/Show toggle button font size and weight across layouts.
 - Added Gutenberg, SEO, and content-navigation documentation to the README files.
 - Updated the Plugin URI to the TableWise landing page.
+- Hardened Gutenberg support by registering post meta on `init` with a REST schema and loading the sidebar script with Block Editor dependencies.
 
 ## 1.2.0
 

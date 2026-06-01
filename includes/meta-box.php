@@ -161,6 +161,36 @@ add_action( 'save_post', function ( $post_id ) {
 } );
 
 /* ─── Gutenberg sidebar panel via REST + block editor sidebar ─ */
+add_action( 'init', 'wptw_register_post_meta' );
+function wptw_register_post_meta(): void {
+    $types = array_unique( array_filter( array_merge( [ 'post', 'page' ], (array) wptw_get( 'post_types' ) ) ) );
+
+    foreach ( $types as $pt ) {
+        register_post_meta( $pt, WPTW_META, [
+            'show_in_rest'  => [
+                'schema' => [
+                    'type'                 => 'object',
+                    'additionalProperties' => false,
+                    'properties'           => [
+                        'disable'       => [ 'type' => 'integer' ],
+                        'default_state' => [ 'type' => 'string' ],
+                        'position'      => [ 'type' => 'string' ],
+                        'toc_title'     => [ 'type' => 'string' ],
+                        'show_numbers'  => [ 'type' => 'string' ],
+                        'sticky_header' => [ 'type' => 'string' ],
+                        'reading_time'  => [ 'type' => 'string' ],
+                    ],
+                ],
+            ],
+            'single'        => true,
+            'type'          => 'object',
+            'auth_callback' => function ( bool $allowed, string $meta_key, int $post_id ): bool {
+                return $post_id ? current_user_can( 'edit_post', $post_id ) : current_user_can( 'edit_posts' );
+            },
+        ] );
+    }
+}
+
 add_action( 'enqueue_block_editor_assets', function () {
     $screen = get_current_screen();
     $types  = (array) wptw_get( 'post_types' );
@@ -170,18 +200,15 @@ add_action( 'enqueue_block_editor_assets', function () {
     $meta    = wptw_post_meta( $post_id );
     $g       = wptw_get();
 
-    // Register meta for REST API
-    foreach ( [ 'post', 'page' ] + $types as $pt ) {
-        register_post_meta( $pt, WPTW_META, [
-            'show_in_rest'  => true,
-            'single'        => true,
-            'type'          => 'object',
-            'auth_callback' => fn() => current_user_can( 'edit_posts' ),
-        ] );
-    }
-
-    // Inline Gutenberg sidebar script
-    wp_add_inline_script( 'wp-blocks', wptw_gutenberg_sidebar_js( $meta, $g ), 'after' );
+    wp_register_script(
+        'wptw-gutenberg-sidebar',
+        false,
+        [ 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n' ],
+        WPTW_VERSION,
+        true
+    );
+    wp_enqueue_script( 'wptw-gutenberg-sidebar' );
+    wp_add_inline_script( 'wptw-gutenberg-sidebar', wptw_gutenberg_sidebar_js( $meta, $g ), 'after' );
 } );
 
 function wptw_gutenberg_sidebar_js( array $meta, array $g ): string {

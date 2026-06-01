@@ -83,6 +83,8 @@
 - Added Gutenberg, SEO, and content-navigation documentation to the README files.
 - Updated the Plugin URI to the TableWise landing page.
 - Hardened Gutenberg support by registering post meta on `init` with a REST schema and loading the sidebar script with Block Editor dependencies.
+- Moved frontend CSS and JavaScript output onto WordPress enqueue handles with `wp_add_inline_style()` and `wp_add_inline_script()`.
+- Added translation wrappers to Gutenberg sidebar labels and help text.
 
 ## 1.2.0
 

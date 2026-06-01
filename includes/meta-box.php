@@ -247,82 +247,82 @@ function wptw_gutenberg_sidebar_js( array $meta, array $g ): string {
         }
 
         return el(frag, null,
-            el(PluginSidebarMoreMenuItem, { target: 'wptw-sidebar' }, 'TableWise'),
-            el(PluginSidebar, { name: 'wptw-sidebar', title: 'TableWise', icon: el('svg',{width:16,height:16,viewBox:'0 0 16 16',fill:'none'},el('rect',{x:.5,y:.5,width:15,height:15,rx:3,stroke:'currentColor','strokeWidth':1.2}),el('path',{d:'M4 5h4M4 8h8M4 11h6',stroke:'currentColor','strokeWidth':1.2,'strokeLinecap':'round'})) },
-                el(PanelBody, { title: 'Per-post Settings', initialOpen: true },
+            el(PluginSidebarMoreMenuItem, { target: 'wptw-sidebar' }, __('TableWise', 'tablewise')),
+            el(PluginSidebar, { name: 'wptw-sidebar', title: __('TableWise', 'tablewise'), icon: el('svg',{width:16,height:16,viewBox:'0 0 16 16',fill:'none'},el('rect',{x:.5,y:.5,width:15,height:15,rx:3,stroke:'currentColor','strokeWidth':1.2}),el('path',{d:'M4 5h4M4 8h8M4 11h6',stroke:'currentColor','strokeWidth':1.2,'strokeLinecap':'round'})) },
+                el(PanelBody, { title: __('Per-post Settings', 'tablewise'), initialOpen: true },
 
                     el(ToggleControl, {
-                        label: 'Disable TOC on this post',
+                        label: __('Disable TOC on this post', 'tablewise'),
                         checked: !!meta.disable,
                         onChange: function(v){ setMeta('disable', v ? 1 : 0); },
-                        help: 'Hides the TOC regardless of global settings.'
+                        help: __('Hides the TOC regardless of global settings.', 'tablewise')
                     }),
 
                     el(SelectControl, {
-                        label: 'Initial TOC state',
+                        label: __('Initial TOC state', 'tablewise'),
                         value: meta.default_state || '',
                         options: [
-                            { value: '', label: '— Global (' + '<?php echo esc_js( $global_state ); ?>' + ')' },
-                            { value: 'open',   label: 'Open'   },
-                            { value: 'closed', label: 'Closed' },
+                            { value: '', label: __('Use global setting', 'tablewise') + ' (' + '<?php echo esc_js( $global_state ); ?>' + ')' },
+                            { value: 'open',   label: __('Open', 'tablewise')   },
+                            { value: 'closed', label: __('Closed', 'tablewise') },
                         ],
                         onChange: function(v){ setMeta('default_state', v); }
                     }),
 
                     el(SelectControl, {
-                        label: 'TOC position',
+                        label: __('TOC position', 'tablewise'),
                         value: meta.position || '',
                         options: [
-                            { value: '', label: '— Use global setting' },
-                            { value: 'before_first_heading',  label: 'Before first heading'   },
-                            { value: 'after_first_paragraph', label: 'After first paragraph'  },
-                            { value: 'shortcode_only',        label: 'Shortcode only'         },
+                            { value: '', label: __('Use global setting', 'tablewise') },
+                            { value: 'before_first_heading',  label: __('Before first heading', 'tablewise')   },
+                            { value: 'after_first_paragraph', label: __('After first paragraph', 'tablewise')  },
+                            { value: 'shortcode_only',        label: __('Shortcode only', 'tablewise')         },
                         ],
                         onChange: function(v){ setMeta('position', v); }
                     }),
 
                     el(TextControl, {
-                        label: 'TOC title',
+                        label: __('TOC title', 'tablewise'),
                         value: meta.toc_title || '',
                         placeholder: '<?php echo esc_js( $global_title ); ?>',
                         onChange: function(v){ setMeta('toc_title', v); },
-                        help: 'Leave blank to use global title.'
+                        help: __('Leave blank to use global title.', 'tablewise')
                     }),
 
                     el(SelectControl, {
-                        label: 'Section numbers',
+                        label: __('Section numbers', 'tablewise'),
                         value: meta.show_numbers !== undefined ? String(meta.show_numbers) : '',
                         options: [
-                            { value: '',  label: '— Use global setting' },
-                            { value: '1', label: 'Show' },
-                            { value: '0', label: 'Hide' },
+                            { value: '',  label: __('Use global setting', 'tablewise') },
+                            { value: '1', label: __('Show', 'tablewise') },
+                            { value: '0', label: __('Hide', 'tablewise') },
                         ],
                         onChange: function(v){ setMeta('show_numbers', v); }
                     }),
 
                     el(SelectControl, {
-                        label: 'Sticky TOC header',
+                        label: __('Sticky TOC header', 'tablewise'),
                         value: meta.sticky_header !== undefined ? String(meta.sticky_header) : '',
                         options: [
-                            { value: '',  label: '— Use global setting' },
-                            { value: '1', label: 'Enabled'  },
-                            { value: '0', label: 'Disabled' },
+                            { value: '',  label: __('Use global setting', 'tablewise') },
+                            { value: '1', label: __('Enabled', 'tablewise')  },
+                            { value: '0', label: __('Disabled', 'tablewise') },
                         ],
                         onChange: function(v){ setMeta('sticky_header', v); }
                     }),
 
                     el(SelectControl, {
-                        label: 'Reading time',
+                        label: __('Reading time', 'tablewise'),
                         value: meta.reading_time !== undefined ? String(meta.reading_time) : '',
                         options: [
-                            { value: '',  label: '— Use global setting' },
-                            { value: '1', label: 'Show' },
-                            { value: '0', label: 'Hide' },
+                            { value: '',  label: __('Use global setting', 'tablewise') },
+                            { value: '1', label: __('Show', 'tablewise') },
+                            { value: '0', label: __('Hide', 'tablewise') },
                         ],
                         onChange: function(v){ setMeta('reading_time', v); }
                     }),
 
-                    el(Tip, null, 'Use [wptw_toc] shortcode for manual TOC placement.')
+                    el(Tip, null, __('Use [wptw_toc] shortcode for manual TOC placement.', 'tablewise'))
                 )
             )
         );

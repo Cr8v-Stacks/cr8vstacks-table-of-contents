@@ -270,11 +270,19 @@ add_action( 'wp_enqueue_scripts', function () {
 } );
 
 /* ─── Frontend styles ─────────────────────────────────────── */
-add_action( 'wp_head', 'wptw_frontend_styles', 5 );
+add_action( 'wp_enqueue_scripts', 'wptw_frontend_styles', 20 );
 
 function wptw_frontend_styles() {
     if ( ! is_singular( (array) wptw_get('post_types') ) ) return;
+
+    ob_start();
     wptw_render_toc_styles();
+    $styles = (string) ob_get_clean();
+    $styles = preg_replace( '#^\s*<style[^>]*>|</style>\s*$#i', '', trim( $styles ) );
+
+    wp_register_style( 'wptw-styles', false, [], WPTW_VERSION );
+    wp_enqueue_style( 'wptw-styles' );
+    wp_add_inline_style( 'wptw-styles', $styles );
 }
 
 function wptw_render_toc_styles( ?array $settings = null, bool $include_custom_css = true, string $style_id = 'wptw-styles' ) {
@@ -1543,7 +1551,7 @@ function wptw_render_toc_styles( ?array $settings = null, bool $include_custom_c
 }
 
 /* ─── Frontend scripts ────────────────────────────────────── */
-add_action( 'wp_footer', 'wptw_frontend_scripts' );
+add_action( 'wp_enqueue_scripts', 'wptw_frontend_scripts', 20 );
 
 function wptw_frontend_scripts() {
     if ( ! is_singular( (array) wptw_get('post_types') ) ) return;
@@ -1558,8 +1566,8 @@ function wptw_frontend_scripts() {
         'stickyTop'       => (int)  $o['sticky_top_offset'],
         'readingWpm'      => (int)  $o['reading_wpm'],
     ];
+    ob_start();
     ?>
-    <script id="wptw-script">
     (function(){
         'use strict';
         var cfg = <?php echo wp_json_encode($cfg); ?>;
@@ -1870,8 +1878,12 @@ function wptw_frontend_scripts() {
 
         }); /* DOMContentLoaded */
     })();
-    </script>
     <?php
+    $script = (string) ob_get_clean();
+
+    wp_register_script( 'wptw-script', false, [], WPTW_VERSION, true );
+    wp_enqueue_script( 'wptw-script' );
+    wp_add_inline_script( 'wptw-script', $script, 'after' );
 }
 
 /**

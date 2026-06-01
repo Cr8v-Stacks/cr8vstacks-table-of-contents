@@ -85,6 +85,7 @@
 - Hardened Gutenberg support by registering post meta on `init` with a REST schema and loading the sidebar script with Block Editor dependencies.
 - Moved frontend CSS and JavaScript output onto WordPress enqueue handles with `wp_add_inline_style()` and `wp_add_inline_script()`.
 - Added translation wrappers to Gutenberg sidebar labels and help text.
+- Updated the Gutenberg sidebar integration to use `wp.editor` instead of deprecated `wp.editPost` sidebar components.
 - Removed empty asset placeholder files from the WordPress.org upload package.
 - Extracted the TableWise settings dashboard CSS and JavaScript into enqueued admin asset files.
 - Removed hidden repository attributes from the plugin package and added a `languages` folder file for WordPress.org scanner compatibility.

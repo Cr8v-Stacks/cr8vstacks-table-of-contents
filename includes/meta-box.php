@@ -203,7 +203,7 @@ add_action( 'enqueue_block_editor_assets', function () {
     wp_register_script(
         'wptw-gutenberg-sidebar',
         false,
-        [ 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n' ],
+        [ 'wp-plugins', 'wp-editor', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n' ],
         WPTW_VERSION,
         true
     );
@@ -224,7 +224,8 @@ function wptw_gutenberg_sidebar_js( array $meta, array $g ): string {
     var frag = wp.element.Fragment;
 
     var { registerPlugin } = wp.plugins;
-    var { PluginSidebar, PluginSidebarMoreMenuItem } = wp.editPost;
+    var editorPackage = wp.editor || wp.editPost;
+    var { PluginSidebar, PluginSidebarMoreMenuItem } = editorPackage;
     var { PanelBody, SelectControl, TextControl, ToggleControl, Tip } = wp.components;
     var { useSelect, useDispatch } = wp.data;
 

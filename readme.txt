@@ -1,13 +1,13 @@
 === TableWise ===
 Contributors: cr8vstacks
-Tags: table of contents, toc, navigation, reading time, sticky
+Tags: table of contents, toc, gutenberg, reading time, seo
 Requires at least: 5.8
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 1.3.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Plugin URI: https://github.com/Cr8v-Stacks/Tablewise
+Plugin URI: https://cr8vstacks.com/dev-playground/tablewise-table-of-content/
 Support: cr8vstacks@gmail.com
 
 Customisable Table of Contents with layouts, live preview, active tracking, reading time, color presets, sticky headers, and per-post controls.
@@ -17,6 +17,10 @@ Customisable Table of Contents with layouts, live preview, active tracking, read
 TableWise automatically generates a polished, accessible Table of Contents for WordPress posts and pages. It gives site owners a complete TOC design system: multiple frontend layouts, live dashboard preview, layout-aware color presets, typography controls, reading progress, sticky behavior, and per-post overrides.
 
 The plugin is built for real publishing workflows. You can keep the original clean card design, switch to a dark editorial manuscript layout, use a soft editorial card, or choose a bold brutalist TOC. Each layout includes its own header, body, child-heading treatment, progress styling, and Hide/Show button style.
+
+TableWise is also Gutenberg-friendly. It works with Block Editor content, adds a dedicated TableWise sidebar panel for per-post controls, and supports manual placement through the shortcode block using `[wptw_toc]`.
+
+For SEO, TableWise outputs crawlable heading anchor links and structured on-page navigation. A clear table of contents can help readers and search engines understand long-form content, improve scanability, and support better internal jump-link navigation. It does not replace a full SEO plugin for metadata, schema, XML sitemaps, or content analysis.
 
 = Layouts =
 
@@ -65,15 +69,32 @@ The plugin is built for real publishing workflows. You can keep the original cle
 * Seventeen color controls covering card, border, header, label, reading time, progress, toggle button, links, active state, numbers, and back-to-top button.
 * Contrast normalization on save and in preview to reduce text/background clashes.
 * Typography controls for font family, link text, child text, label text, reading time, numbers, label letter spacing, label transform, and border radius.
-* Font options include system fonts plus Inter, DM Sans, Lato, Nunito, Open Sans, Poppins, Raleway, Roboto, Source Sans 3, Work Sans, Playfair Display, Merriweather, DM Mono, Fira Mono, and JetBrains Mono.
+* Font stack options include system fonts plus Inter, DM Sans, Lato, Nunito, Open Sans, Poppins, Raleway, Roboto, Source Sans 3, Work Sans, Playfair Display, Merriweather, DM Mono, Fira Mono, and JetBrains Mono.
+* No remote font files are loaded by TableWise; font choices use local/theme-available font stacks.
 * Custom CSS field for full theme-specific override control.
 
 = Per-Post Control =
 
 * Classic Editor meta box with key overrides.
 * Block Editor sidebar panel via registerPlugin.
+* Gutenberg-friendly shortcode placement through the Shortcode block.
 * Quick Edit support from the posts list.
 * Per-post controls for disabling the TOC, title, initial state, placement, numbers, sticky header, and reading time.
+
+= Gutenberg And Block Editor Support =
+
+* Works with headings created in the WordPress Block Editor.
+* Adds a dedicated TableWise sidebar panel for per-post settings.
+* Supports manual TOC placement with the Shortcode block.
+* Keeps global dashboard settings and per-post Gutenberg overrides in sync.
+
+= SEO And Content Navigation =
+
+* Outputs regular HTML links to heading anchors, so the TOC is crawlable.
+* Preserves existing heading IDs when possible and generates stable anchors where needed.
+* Helps long-form posts become easier to scan, navigate, and understand.
+* Supports better user engagement by reducing friction in long content.
+* Complements SEO plugins, but does not replace metadata, schema, sitemap, or content optimization tools.
 
 = Developer-Friendly =
 
@@ -133,6 +154,14 @@ When enabled, the TOC header sticks while the reader scrolls. Use "Sticky top of
 
 Yes. Use the TableWise sidebar panel in the Block Editor, the Classic Editor meta box, or Quick Edit controls.
 
+= Does TableWise work with Gutenberg? =
+
+Yes. TableWise works with Block Editor headings, adds a Gutenberg sidebar panel for per-post controls, and can be placed manually with the Shortcode block.
+
+= Does a table of contents help SEO? =
+
+It can help indirectly. TableWise creates crawlable anchor links and clearer on-page navigation, which can improve scanability and user experience for long content. It is not a replacement for an SEO plugin that manages titles, meta descriptions, schema, sitemaps, or content analysis.
+
 = Does TableWise require jQuery? =
 
 No. The frontend behavior is written without jQuery.
@@ -177,6 +206,8 @@ Use `.wptw-toc` as your root selector in the Custom CSS field. Internal elements
 * Added sticky settings-page header, admin footer, and cross-links between Layouts and Colours
 * Removed WordPress footer attribution from the TableWise settings screen
 * Expanded README and WordPress readme documentation to cover the full layout, preview, color, typography, reader, and per-post feature set
+* Added Gutenberg, SEO, and content-navigation documentation to the readme
+* Updated Plugin URI to the TableWise landing page
 
 = 1.2.0 =
 * Improved sticky header logic for better viewport tracking

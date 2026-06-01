@@ -425,8 +425,9 @@ function wptw_render_toc_styles( ?array $settings = null, bool $include_custom_c
         padding:        5px 11px;
         cursor:         pointer;
         font-family:    var(--wptw-mono);
-        font-size:      10px;
-        letter-spacing: 0.08em;
+        font-size:      9px;
+        font-weight:    500;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
         line-height:    1;
         flex-shrink:    0;
@@ -518,7 +519,7 @@ function wptw_render_toc_styles( ?array $settings = null, bool $include_custom_c
     }
     .wptw-toc--layout-default .wptw-toc__toggle {
         border-radius: max(4px, calc(var(--wptw-radius) / 2));
-        font-weight: 700;
+        font-weight: 500;
     }
     .wptw-toc--layout-default .wptw-toc__label {
         color: var(--wptw-label-c);
@@ -575,8 +576,8 @@ function wptw_render_toc_styles( ?array $settings = null, bool $include_custom_c
     }
     .wptw-toc--layout-editorial .wptw-toc__toggle {
         border-radius: 999px;
-        font-weight: 700;
-        padding: 6px 10px;
+        font-weight: 500;
+        padding: 5px 9px;
     }
     .wptw-toc--layout-editorial .wptw-toc__list { padding: 12px 0; }
     .wptw-toc--layout-editorial .wptw-toc__item {
@@ -655,9 +656,10 @@ function wptw_render_toc_styles( ?array $settings = null, bool $include_custom_c
         border-radius: 0;
         box-shadow: 3px 3px 0 color-mix(in srgb, var(--wptw-border) 75%, var(--wptw-link) 25%);
         font-family: var(--wptw-font);
-        font-weight: 800;
-        letter-spacing: .02em;
-        padding: 7px 11px;
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: .01em;
+        padding: 6px 9px;
         text-transform: uppercase;
     }
     .wptw-toc--layout-brutalist .wptw-toc__list { padding: 0; }
@@ -1216,7 +1218,8 @@ function wptw_render_toc_styles( ?array $settings = null, bool $include_custom_c
         border-color: color-mix(in srgb, var(--wptw-ms-accent) 62%, transparent) !important;
         border-radius: 999px;
         color: var(--wptw-ms-accent) !important;
-        padding: 5px 9px;
+        font-weight: 500;
+        padding: 4px 8px;
     }
     .wptw-toc--layout-manuscript .wptw-toc__body {
         background: transparent;

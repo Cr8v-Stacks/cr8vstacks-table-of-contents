@@ -958,14 +958,8 @@ function wptw_admin_js() {
         function showFontPreview(font){
             if(!fontPrv) return;
             if(!font||font==='system'){ fontPrv.textContent=''; fontPrv.style.fontFamily=''; return; }
-            var lid='wptw-gfont-link';
-            var old=document.getElementById(lid); if(old) old.remove();
-            var lk=document.createElement('link');
-            lk.id=lid; lk.rel='stylesheet';
-            lk.href='https://fonts.googleapis.com/css2?family='+encodeURIComponent(font)+':wght@400;500&display=swap';
-            document.head.appendChild(lk);
             fontPrv.style.fontFamily="'"+font+"',sans-serif";
-            fontPrv.textContent='The quick brown fox — Aa Bb Cc 0123456789';
+            fontPrv.textContent='The quick brown fox - Aa Bb Cc 0123456789';
         }
         if(fontSel){ fontSel.addEventListener('change', function(){ showFontPreview(this.value); }); showFontPreview(fontSel.value); }
 

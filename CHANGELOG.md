@@ -77,6 +77,11 @@
 - Removed WordPress footer attribution from the TableWise settings screen.
 - Added shortcut buttons between Layouts and Colours tabs.
 - Expanded README and WordPress readme documentation to cover the full layout, preview, color, typography, reader, and per-post feature set.
+- Updated WordPress compatibility metadata to Tested up to 7.0.
+- Removed remote Google Fonts loading so TableWise uses local/theme-available font stacks for WordPress.org readiness.
+- Reduced Hide/Show toggle button font size and weight across layouts.
+- Added Gutenberg, SEO, and content-navigation documentation to the README files.
+- Updated the Plugin URI to the TableWise landing page.
 
 ## 1.2.0
 

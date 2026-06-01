@@ -1,10 +1,11 @@
 <?php
 /**
  * Plugin Name:       TableWise
- * Plugin URI:        https://github.com/Cr8v-Stacks/Tablewise
+ * Plugin URI:        https://cr8vstacks.com/dev-playground/tablewise-table-of-content/
  * Description:       A clean, minimal, and highly customisable Table of Contents plugin. Supports sticky headers, per-post overrides, active-section tracking, reading time estimates, and a full settings panel.
  * Version:           1.3.0
  * Requires at least: 5.8
+ * Tested up to:      7.0
  * Requires PHP:      7.4
  * Author:            Cr8v Stacks
  * Author URI:        https://cr8vstacks.com

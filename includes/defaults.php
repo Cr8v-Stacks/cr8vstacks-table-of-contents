@@ -30,8 +30,7 @@ function wptw_font_stack( string $font ): string {
 }
 
 function wptw_google_font_url( string $font ): string {
-    if ( in_array( $font, [ '', 'system' ], true ) ) return '';
-    return "https://fonts.googleapis.com/css2?family=" . urlencode( $font ) . ":wght@400;500;600&display=swap";
+    return '';
 }
 
 function wptw_toc_layouts(): array {

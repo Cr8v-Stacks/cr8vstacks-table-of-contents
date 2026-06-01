@@ -5,6 +5,7 @@ TableWise is a customizable WordPress table of contents plugin for posts and pag
 ## Repository
 
 - GitHub: https://github.com/Cr8v-Stacks/Tablewise
+- Website: https://cr8vstacks.com/dev-playground/tablewise-table-of-content/
 - Support: cr8vstacks@gmail.com
 
 ## What TableWise Does
@@ -14,6 +15,7 @@ TableWise is a customizable WordPress table of contents plugin for posts and pag
 - Supports public post types, minimum heading thresholds, excluded post IDs, and custom anchor prefixes.
 - Preserves existing heading IDs when possible and generates anchors for headings that do not already have one.
 - Adds smooth scrolling, active section highlighting, optional numbering, optional back-to-top, and accessible expand/collapse behavior.
+- Outputs crawlable heading anchor links that can support long-form content navigation and SEO-friendly page structure.
 
 ## Layouts
 
@@ -45,7 +47,8 @@ TableWise is designed so each layout can keep its own personality while still be
 - Seventeen individual color controls for card, border, header, label, reading time, progress, toggle button, links, active state, numbers, and back-to-top button.
 - Contrast normalization on save and in preview to reduce text/background clashes.
 - Typography controls for font family, link text, child text, label text, reading time, numbers, label letter spacing, label transform, and border radius.
-- Built-in font choices include system fonts plus Inter, DM Sans, Lato, Nunito, Open Sans, Poppins, Raleway, Roboto, Source Sans 3, Work Sans, Playfair Display, Merriweather, DM Mono, Fira Mono, and JetBrains Mono.
+- Built-in font stack choices include system fonts plus Inter, DM Sans, Lato, Nunito, Open Sans, Poppins, Raleway, Roboto, Source Sans 3, Work Sans, Playfair Display, Merriweather, DM Mono, Fira Mono, and JetBrains Mono.
+- No remote font files are loaded by TableWise; font choices use local/theme-available font stacks.
 - Custom CSS field for deeper theme-specific adjustments.
 
 ## Reader Features
@@ -64,8 +67,19 @@ Global settings can be overridden per post.
 
 - Classic Editor meta box.
 - Gutenberg sidebar panel.
+- Gutenberg-friendly shortcode placement through the Shortcode block.
 - Quick Edit support from the posts list.
 - Per-post controls for disabling the TOC, title, initial state, placement, numbers, sticky header, and reading time.
+
+## Gutenberg Support
+
+TableWise works with headings created in the WordPress Block Editor. It adds a Gutenberg sidebar panel for per-post settings, supports manual placement through the Shortcode block, and keeps global dashboard settings and per-post overrides working together.
+
+## SEO And Content Navigation
+
+TableWise can support SEO by creating a crawlable table of contents with stable heading anchors. This helps long-form content become easier to scan and navigate, and gives search engines clearer internal jump links to the sections on a page.
+
+TableWise does not replace a dedicated SEO plugin. It does not manage meta titles, meta descriptions, schema, XML sitemaps, or content scoring.
 
 ## Shortcode
 

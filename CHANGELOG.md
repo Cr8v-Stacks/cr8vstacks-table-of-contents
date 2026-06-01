@@ -85,6 +85,7 @@
 - Hardened Gutenberg support by registering post meta on `init` with a REST schema and loading the sidebar script with Block Editor dependencies.
 - Moved frontend CSS and JavaScript output onto WordPress enqueue handles with `wp_add_inline_style()` and `wp_add_inline_script()`.
 - Added translation wrappers to Gutenberg sidebar labels and help text.
+- Removed empty asset placeholder files from the WordPress.org upload package.
 
 ## 1.2.0
 

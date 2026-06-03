@@ -37,7 +37,7 @@ function wptw_toc_layouts(): array {
     return [
         'default' => [
             'label' => 'Minimalist',
-            'desc'  => 'The original TableWise card layout.',
+            'desc'  => 'The original clean card layout.',
         ],
         'manuscript' => [
             'label' => 'Manuscript',
@@ -124,9 +124,6 @@ function wptw_defaults(): array {
         'text_transform_label'  => 'uppercase',  // uppercase | none
 
         'border_radius'         => 4,
-
-        /* Advanced */
-        'custom_css'            => '',
     ];
 }
 

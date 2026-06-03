@@ -6,7 +6,7 @@ add_action( 'admin_init', function () {
 } );
 
 add_action( 'admin_menu', function () {
-    add_options_page( 'TableWise', 'TableWise', 'manage_options', 'tablewise', 'wptw_render_settings_page' );
+    add_options_page( 'Cr8vstacks Table of Contents', 'Cr8v TOC', 'manage_options', 'cr8vstacks-table-of-contents', 'wptw_render_settings_page' );
 } );
 
 /**
@@ -14,16 +14,12 @@ add_action( 'admin_menu', function () {
  * We use native <input type="color"> instead. Zero JS dependencies for admin.
  */
 add_action( 'admin_enqueue_scripts', function ( $hook ) {
-    if ( $hook !== 'settings_page_tablewise' ) return;
+    if ( $hook !== 'settings_page_cr8vstacks-table-of-contents' ) return;
 
     wp_enqueue_style( 'wptw-admin', WPTW_URL . 'assets/admin.css', [], WPTW_VERSION );
 
     if ( function_exists( 'wptw_render_toc_styles' ) ) {
-        ob_start();
-        wptw_render_toc_styles( wptw_get(), false, 'wptw-admin-preview-frontend-styles' );
-        $preview_styles = (string) ob_get_clean();
-        $preview_styles = preg_replace( '#^\s*<style[^>]*>|</style>\s*$#i', '', trim( $preview_styles ) );
-        wp_add_inline_style( 'wptw-admin', $preview_styles );
+        wp_add_inline_style( 'wptw-admin', wptw_render_toc_styles( wptw_get() ) );
     }
 
     $def_colors = array_filter( wptw_defaults(), static function ( $k ) {
@@ -43,12 +39,12 @@ add_action( 'admin_enqueue_scripts', function ( $hook ) {
 
 add_filter( 'admin_footer_text', function ( $text ) {
     $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-    return $screen && $screen->id === 'settings_page_tablewise' ? '' : $text;
+    return $screen && $screen->id === 'settings_page_cr8vstacks-table-of-contents' ? '' : $text;
 }, 20 );
 
 add_filter( 'update_footer', function ( $text ) {
     $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-    return $screen && $screen->id === 'settings_page_tablewise' ? '' : $text;
+    return $screen && $screen->id === 'settings_page_cr8vstacks-table-of-contents' ? '' : $text;
 }, 20 );
 
 /* ── Sanitise ─────────────────────────────────────────────── */
@@ -103,8 +99,6 @@ function wptw_sanitize_settings( $raw ): array {
     $clean['text_transform_label'] = in_array( $raw['text_transform_label'] ?? 'uppercase', [ 'uppercase','none','capitalize' ], true )
                                         ? $raw['text_transform_label'] : 'uppercase';
     $clean['border_radius']        = wptw_clamp( $raw['border_radius']       ?? 4,   0, 24 );
-    $clean['custom_css']           = wp_strip_all_tags( $raw['custom_css'] ?? '' );
-
     return $clean;
 }
 
@@ -218,7 +212,7 @@ function wptw_render_settings_page() {
         <header class="wptw-ph">
             <div class="wptw-logo">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="1" y="1" width="26" height="26" rx="6" fill="#111"/><path d="M7 9h6M7 14h12M7 19h9" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
-                <div><span class="wptw-pname">TableWise</span><span class="wptw-pver">v<?php echo esc_html( WPTW_VERSION ); ?></span></div>
+                <div><span class="wptw-pname">Cr8vstacks Table of Contents</span><span class="wptw-pver">v<?php echo esc_html( WPTW_VERSION ); ?></span></div>
             </div>
             <a href="https://cr8vstacks.com" target="_blank" rel="noopener noreferrer" class="wptw-by">by Cr8v Stacks ↗</a>
         </header>
@@ -465,7 +459,7 @@ function wptw_render_settings_page() {
                                 <?php endforeach; ?>
                             </select>
                             <span id="wptw-font-preview" style="display:block;margin-top:8px;font-size:13px;color:#555;min-height:18px"></span>
-                            <p class="wptw-help">Applies to link text in the list. System default inherits your theme's font. Google Fonts options load from Google's CDN on the frontend.</p>
+                            <p class="wptw-help">Applies to link text in the list. System default inherits your theme's font, and all font choices use local or theme-available font stacks.</p>
                         </div>
 
                         <p class="wptw-subhead">Link list</p>
@@ -514,16 +508,12 @@ function wptw_render_settings_page() {
 
                 <!-- ══ ADVANCED ══ -->
                 <section class="wptw-panel" data-panel="advanced">
-                    <?php wptw_ph('Advanced','Custom CSS and shortcode reference.'); ?>
+                    <?php wptw_ph('Advanced','Shortcode and manual placement reference.'); ?>
                     <div class="wptw-fields">
-                        <div class="wptw-field">
-                            <label class="wptw-label">Custom CSS</label>
-                            <textarea name="<?php echo esc_attr( WPTW_OPTION ); ?>[custom_css]" class="wptw-textarea" rows="12" spellcheck="false"><?php echo esc_textarea($o['custom_css']);?></textarea>
-                            <p class="wptw-help">Appended after all plugin styles. Selectors: <code>.wptw-toc</code>, <code>.wptw-toc__label</code>, <code>.wptw-toc__rt</code>, <code>.wptw-toc__num</code>, <code>.wptw-toc__link</code>, <code>.wptw-toc__toggle</code></p>
-                        </div>
                         <div class="wptw-field">
                             <label class="wptw-label">Shortcode</label>
                             <div class="wptw-codebox"><code>[wptw_toc]</code><button type="button" class="wptw-copybtn" data-copy="[wptw_toc]">Copy</button></div>
+                            <p class="wptw-help">Use this shortcode when Display > Position is set to shortcode only, or place it in a Shortcode block for manual placement.</p>
                         </div>
                     </div>
                 </section>
@@ -567,7 +557,7 @@ function wptw_render_settings_page() {
             </form>
         </div>
         <footer class="wptw-admin-footer">
-            <span>TableWise <?php echo esc_html( WPTW_VERSION ); ?></span>
+            <span>Cr8vstacks Table of Contents <?php echo esc_html( WPTW_VERSION ); ?></span>
             <span>Built by <a href="https://cr8vstacks.com" target="_blank" rel="noopener noreferrer">Cr8v Stacks</a></span>
         </footer>
     </div>

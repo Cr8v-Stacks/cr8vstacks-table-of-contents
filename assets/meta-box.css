@@ -1,0 +1,18 @@
+.wptw-meta { font-size: 13px; }
+.wptw-meta-field { margin-bottom: 14px; }
+.wptw-meta-label { display: block; font-weight: 600; color: #333; margin-bottom: 4px; font-size: 12px; }
+.wptw-meta-help { font-size: 11px; color: #999; margin: 3px 0 0; line-height: 1.4; }
+.wptw-meta-input,
+.wptw-meta-select { width: 100%; padding: 5px 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 12.5px; box-sizing: border-box; }
+.wptw-meta-input:focus,
+.wptw-meta-select:focus { border-color: #2271b1; outline: none; box-shadow: 0 0 0 2px rgba(34,113,177,.15); }
+.wptw-meta-toggle { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+.wptw-meta-toggle input[type="hidden"] { display: none; }
+.wptw-meta-toggle input[type="checkbox"] { opacity: 0; width: 0; height: 0; position: absolute; }
+.wptw-meta-knob { position: relative; flex-shrink: 0; width: 32px; height: 18px; background: #ccc; border-radius: 18px; transition: background .2s; }
+.wptw-meta-knob::after { content: ''; position: absolute; left: 2px; top: 2px; width: 14px; height: 14px; background: #fff; border-radius: 50%; transition: transform .2s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.wptw-meta-toggle input[type="checkbox"]:checked ~ .wptw-meta-knob { background: #c0392b; }
+.wptw-meta-toggle input[type="checkbox"]:checked ~ .wptw-meta-knob::after { transform: translateX(14px); }
+.wptw-meta-toggle-label { font-weight: 600; font-size: 12.5px; color: #333; }
+.wptw-meta-dimmed { opacity: .4; pointer-events: none; }
+#wptw-meta-options { margin-top: 14px; padding-top: 14px; border-top: 1px solid #eee; transition: opacity .2s; }

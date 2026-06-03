@@ -5,11 +5,25 @@ defined( 'ABSPATH' ) || exit;
 add_filter( 'manage_posts_columns',       'wptw_add_list_column' );
 add_filter( 'manage_pages_columns',       'wptw_add_list_column' );
 
+add_action( 'admin_enqueue_scripts', function ( $hook ) {
+    if ( $hook !== 'edit.php' ) return;
+
+    $screen = get_current_screen();
+    $types  = (array) wptw_get( 'post_types' );
+    if ( ! $screen || ! in_array( $screen->post_type, $types, true ) ) return;
+
+    wp_enqueue_style( 'wptw-quick-edit', WPTW_URL . 'assets/quick-edit.css', [], WPTW_VERSION );
+    wp_enqueue_script( 'wptw-quick-edit', WPTW_URL . 'assets/quick-edit.js', [ 'jquery' ], WPTW_VERSION, true );
+    wp_localize_script( 'wptw-quick-edit', 'wptwQuickEdit', [
+        'nonce' => wp_create_nonce( 'wptw_qe_save' ),
+    ] );
+} );
+
 function wptw_add_list_column( array $cols ): array {
     $types = (array) wptw_get( 'post_types' );
     $screen = get_current_screen();
     if ( $screen && in_array( $screen->post_type, $types, true ) ) {
-        $cols['wptw_toc'] = '<span title="WP TableWise">TOC</span>';
+        $cols['wptw_toc'] = '<span title="Cr8vstacks Table of Contents">TOC</span>';
     }
     return $cols;
 }
@@ -47,7 +61,7 @@ add_action( 'quick_edit_custom_box', function ( $col, $post_type ) {
         <div class="inline-edit-col">
             <label class="wptw-qe-heading">
                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="vertical-align:-2px"><rect x=".5" y=".5" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.2"/><path d="M3 4h4M3 6.5h7M3 9h5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
-                WP TableWise
+                Cr8v TOC
             </label>
 
             <div class="wptw-qe-row">
@@ -89,78 +103,10 @@ add_action( 'quick_edit_custom_box', function ( $col, $post_type ) {
             <input type="hidden" name="wptw_qe_post_id" value="">
         </div>
     </fieldset>
-    <style>
-        .wptw-qe-fieldset { padding-top: 4px; }
-        .wptw-qe-heading { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 12px; color: #333; margin-bottom: 10px; }
-        .wptw-qe-row { margin-bottom: 8px; }
-        .wptw-qe-label { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #444; }
-        .wptw-qe-select { width: 100%; max-width: 200px; font-size: 12px; padding: 4px 6px; border: 1px solid #ddd; border-radius: 3px; margin-top: 3px; display: block; }
-        /* List column styles */
-        .wptw-col-off    { color: #c0392b; font-size: 11px; font-weight: 600; }
-        .wptw-col-open   { color: #2e7d32; font-size: 11px; }
-        .wptw-col-closed { color: #777;    font-size: 11px; }
-        .wptw-col-global { color: #aaa;    font-size: 11px; }
-    </style>
     <?php
 }, 10, 2 );
 
 /* ─── Populate Quick Edit via JS ──────────────────────────── */
-add_action( 'admin_footer-edit.php', function () {
-    $types = (array) wptw_get( 'post_types' );
-    $screen = get_current_screen();
-    if ( ! $screen || ! in_array( $screen->post_type, $types, true ) ) return;
-    ?>
-    <script>
-    (function($){
-        var qeNonce = '<?php echo esc_js( wp_create_nonce( 'wptw_qe_save' ) ); ?>';
-
-        /* Pre-populate Quick Edit fields when row is opened */
-        $(document).on('click', '.editinline', function(){
-            var postId  = $(this).closest('tr').attr('id').replace('post-','');
-            var $row    = $('#post-' + postId);
-
-            /* Pull hidden data attributes we'll embed in each row */
-            var disable  = $row.find('.wptw-qe-data').data('disable')  || 0;
-            var state    = $row.find('.wptw-qe-data').data('state')    || '';
-            var position = $row.find('.wptw-qe-data').data('position') || '';
-            var nums     = $row.find('.wptw-qe-data').data('nums');
-            if(nums === undefined) nums = '';
-
-            /* Small delay for WP to render the quick-edit row */
-            setTimeout(function(){
-                var $qe = $('.inline-edit-row:visible');
-                $qe.find('[name="wptw_qe[disable]"]').prop('checked', !!parseInt(disable));
-                $qe.find('[name="wptw_qe[default_state]"]').val(state);
-                $qe.find('[name="wptw_qe[position]"]').val(position);
-                $qe.find('[name="wptw_qe[show_numbers]"]').val(String(nums));
-                $qe.find('[name="wptw_qe_nonce"]').val(qeNonce);
-                $qe.find('[name="wptw_qe_post_id"]').val(postId);
-            }, 50);
-        });
-
-        /* Intercept the Quick Edit save request and send our data too */
-        $(document).on('click', '.save.button', function(){
-            var $qe      = $(this).closest('.inline-edit-row');
-            var postId   = $qe.find('[name="wptw_qe_post_id"]').val();
-            var nonce    = $qe.find('[name="wptw_qe_nonce"]').val();
-            if(!postId || !nonce) return;
-
-            var data = {
-                action:   'wptw_quick_edit_save',
-                post_id:  postId,
-                nonce:    nonce,
-                disable:  $qe.find('[name="wptw_qe[disable]"]').is(':checked') ? 1 : 0,
-                default_state: $qe.find('[name="wptw_qe[default_state]"]').val(),
-                position:      $qe.find('[name="wptw_qe[position]"]').val(),
-                show_numbers:  $qe.find('[name="wptw_qe[show_numbers]"]').val(),
-            };
-            $.post(ajaxurl, data);
-        });
-    })(jQuery);
-    </script>
-    <?php
-} );
-
 /* ─── Embed data attrs in each row (for JS pre-population) ── */
 add_action( 'manage_posts_custom_column', function( $col, $post_id ) {
     if ( $col !== 'wptw_toc' ) return;

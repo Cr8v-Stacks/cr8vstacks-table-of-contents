@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       TableWise
- * Plugin URI:        https://cr8vstacks.com/dev-playground/tablewise-table-of-content/
+ * Plugin Name:       Cr8vstacks Table of Contents
+ * Plugin URI:        https://cr8vstacks.com/dev-playground/cr8vstacks-table-of-contents/
  * Description:       A clean, minimal, and highly customisable Table of Contents plugin. Supports sticky headers, per-post overrides, active-section tracking, reading time estimates, and a full settings panel.
  * Version:           1.3.0
  * Requires at least: 5.8
@@ -11,7 +11,7 @@
  * Author URI:        https://cr8vstacks.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       tablewise
+ * Text Domain:       cr8vstacks-table-of-contents
  * Domain Path:       /languages
  */
 

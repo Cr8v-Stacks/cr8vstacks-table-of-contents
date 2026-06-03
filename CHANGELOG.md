@@ -1,7 +1,11 @@
-# Changelog
+﻿# Changelog
 
 ## 1.3.0
 
+- Renamed the public plugin identity to Cr8vstacks Table of Contents and updated the WordPress.org text domain to `cr8vstacks-table-of-contents`.
+- Removed the arbitrary CSS override settings field and output path for WordPress.org repository compliance.
+- Moved Quick Edit and Classic Editor meta box CSS/JavaScript into enqueued asset files.
+- Changed the TOC stylesheet builder to return CSS for `wp_add_inline_style()` instead of printing a raw style block.
 - Added selectable TOC layouts: Minimalist, Manuscript, Soft Editorial, and Brutalist.
 - Renamed the original layout to Minimalist and made Manuscript the default layout.
 - Added a dedicated Layouts tab in the dashboard.
@@ -22,7 +26,7 @@
 - Reworked Manuscript to more closely follow the sample mockup: mono eyebrow header, dark editorial body, serif titles, subdued read states, and amber progress.
 - Fixed Manuscript timeline alignment so the vertical line runs through the center of the circle nodes.
 - Hardened Manuscript timeline rules against older duplicated CSS so the node column, list spacing, and pseudo-elements cannot drift from the mockup structure.
-- Verified the edited plugin copy is the `wp-content/plugins/tablewise` installation and checked the frontend/admin Manuscript markup selectors for mismatches.
+- Verified the edited plugin copy in the local WordPress plugins directory and checked the frontend/admin Manuscript markup selectors for mismatches.
 - Improved colour preset rules so header and body backgrounds stay distinct and secondary text has stronger contrast.
 - Reworked Manuscript colours with a derived ink/paper palette so dark presets no longer create dark-on-dark text.
 - Matched Manuscript background and text treatment to the mockup's fixed ink surface, amber accent, and white-opacity secondary colours.
@@ -74,20 +78,20 @@
 - Hardened TOC text, link, list, and button styles against theme defaults.
 - Improved toggle button contrast across presets and layouts.
 - Added sticky settings-page header and custom admin footer.
-- Removed WordPress footer attribution from the TableWise settings screen.
+- Removed WordPress footer attribution from the Cr8vstacks Table of Contents settings screen.
 - Added shortcut buttons between Layouts and Colours tabs.
 - Expanded README and WordPress readme documentation to cover the full layout, preview, color, typography, reader, and per-post feature set.
 - Updated WordPress compatibility metadata to Tested up to 7.0.
-- Removed remote Google Fonts loading so TableWise uses local/theme-available font stacks for WordPress.org readiness.
+- Removed remote Google Fonts loading so Cr8vstacks Table of Contents uses local/theme-available font stacks for WordPress.org readiness.
 - Reduced Hide/Show toggle button font size and weight across layouts.
 - Added Gutenberg, SEO, and content-navigation documentation to the README files.
-- Updated the Plugin URI to the TableWise landing page.
+- Updated the Plugin URI to the Cr8vstacks Table of Contents landing page.
 - Hardened Gutenberg support by registering post meta on `init` with a REST schema and loading the sidebar script with Block Editor dependencies.
 - Moved frontend CSS and JavaScript output onto WordPress enqueue handles with `wp_add_inline_style()` and `wp_add_inline_script()`.
 - Added translation wrappers to Gutenberg sidebar labels and help text.
 - Updated the Gutenberg sidebar integration to use `wp.editor` instead of deprecated `wp.editPost` sidebar components.
 - Removed empty asset placeholder files from the WordPress.org upload package.
-- Extracted the TableWise settings dashboard CSS and JavaScript into enqueued admin asset files.
+- Extracted the Cr8vstacks Table of Contents settings dashboard CSS and JavaScript into enqueued admin asset files.
 - Removed hidden repository attributes from the plugin package and added a `languages` folder file for WordPress.org scanner compatibility.
 
 ## 1.2.0

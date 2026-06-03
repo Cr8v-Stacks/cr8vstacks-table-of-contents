@@ -1,4 +1,4 @@
-=== TableWise ===
+﻿=== Cr8vstacks Table of Contents ===
 Contributors: cr8vstacks
 Tags: table of contents, toc, gutenberg, reading time, seo
 Requires at least: 5.8
@@ -7,27 +7,27 @@ Requires PHP: 7.4
 Stable tag: 1.3.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Plugin URI: https://cr8vstacks.com/dev-playground/tablewise-table-of-content/
+Plugin URI: https://cr8vstacks.com/dev-playground/cr8vstacks-table-of-contents/
 Support: cr8vstacks@gmail.com
 
 Customisable Table of Contents with layouts, live preview, active tracking, reading time, color presets, sticky headers, and per-post controls.
 
 == Description ==
 
-TableWise automatically generates a polished, accessible Table of Contents for WordPress posts and pages. It gives site owners a complete TOC design system: multiple frontend layouts, live dashboard preview, layout-aware color presets, typography controls, reading progress, sticky behavior, and per-post overrides.
+Cr8vstacks Table of Contents automatically generates a polished, accessible Table of Contents for WordPress posts and pages. It gives site owners a complete TOC design system: multiple frontend layouts, live dashboard preview, layout-aware color presets, typography controls, reading progress, sticky behavior, and per-post overrides.
 
 The plugin is built for real publishing workflows. You can keep the original clean card design, switch to a dark editorial manuscript layout, use a soft editorial card, or choose a bold brutalist TOC. Each layout includes its own header, body, child-heading treatment, progress styling, and Hide/Show button style.
 
-TableWise is also Gutenberg-friendly. It works with Block Editor content, adds a dedicated TableWise sidebar panel for per-post controls, and supports manual placement through the shortcode block using `[wptw_toc]`.
+Cr8vstacks Table of Contents is also Gutenberg-friendly. It works with Block Editor content, adds a dedicated Cr8vstacks Table of Contents sidebar panel for per-post controls, and supports manual placement through the shortcode block using `[wptw_toc]`.
 
-For SEO, TableWise outputs crawlable heading anchor links and structured on-page navigation. A clear table of contents can help readers and search engines understand long-form content, improve scanability, and support better internal jump-link navigation. It does not replace a full SEO plugin for metadata, schema, XML sitemaps, or content analysis.
+For SEO, Cr8vstacks Table of Contents outputs crawlable heading anchor links and structured on-page navigation. A clear table of contents can help readers and search engines understand long-form content, improve scanability, and support better internal jump-link navigation. It does not replace a full SEO plugin for metadata, schema, XML sitemaps, or content analysis.
 
 = Layouts =
 
 * Manuscript: dark editorial layout with chapter-style timeline markers, amber progress, right-aligned reading time, and depth-aware child heading treatment.
 * Soft Editorial: clean editorial card with guided sections, completed-state checkmarks, dark/soft-dark typography, and nested child rows.
 * Brutalist: bold typographic layout with dark body, darker header, offset border extension, squared controls, high-contrast active rows, and nested child styling.
-* Minimalist: the original clean light card layout for users who prefer the classic TableWise look.
+* Minimalist: the original clean light card layout for users who prefer the classic Cr8vstacks Table of Contents look.
 
 = Dashboard And Live Preview =
 
@@ -37,7 +37,7 @@ For SEO, TableWise outputs crawlable heading anchor links and structured on-page
 * Sticky dashboard header for easier editing.
 * Saved Active badges for the current layout and color preset.
 * Shortcut links between Layouts and Colours.
-* Custom TableWise admin footer on the settings screen.
+* Custom Cr8vstacks Table of Contents admin footer on the settings screen.
 
 = Display And Behaviour =
 
@@ -70,8 +70,7 @@ For SEO, TableWise outputs crawlable heading anchor links and structured on-page
 * Contrast normalization on save and in preview to reduce text/background clashes.
 * Typography controls for font family, link text, child text, label text, reading time, numbers, label letter spacing, label transform, and border radius.
 * Font stack options include system fonts plus Inter, DM Sans, Lato, Nunito, Open Sans, Poppins, Raleway, Roboto, Source Sans 3, Work Sans, Playfair Display, Merriweather, DM Mono, Fira Mono, and JetBrains Mono.
-* No remote font files are loaded by TableWise; font choices use local/theme-available font stacks.
-* Custom CSS field for full theme-specific override control.
+* No remote font files are loaded by Cr8vstacks Table of Contents; font choices use local/theme-available font stacks.
 
 = Per-Post Control =
 
@@ -84,7 +83,7 @@ For SEO, TableWise outputs crawlable heading anchor links and structured on-page
 = Gutenberg And Block Editor Support =
 
 * Works with headings created in the WordPress Block Editor.
-* Adds a dedicated TableWise sidebar panel for per-post settings.
+* Adds a dedicated Cr8vstacks Table of Contents sidebar panel for per-post settings.
 * Supports manual TOC placement with the Shortcode block.
 * Keeps global dashboard settings and per-post Gutenberg overrides in sync.
 
@@ -107,9 +106,9 @@ For SEO, TableWise outputs crawlable heading anchor links and structured on-page
 
 == Installation ==
 
-1. Upload the `tablewise` folder to `/wp-content/plugins/`.
+1. Upload the `cr8vstacks-table-of-contents` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Go to **Settings > TableWise** to configure global behavior.
+3. Go to **Settings > Cr8v TOC** to configure global behavior.
 4. Optionally override settings per post through the editor sidebar/meta box or Quick Edit.
 
 == Shortcode ==
@@ -124,7 +123,7 @@ No. The TOC only appears if the post type is enabled, the post meets the minimum
 
 = Can I switch between different TOC designs? =
 
-Yes. Go to **Settings > TableWise > Layouts** and choose Manuscript, Soft Editorial, Brutalist, or Minimalist. The Active badge shows the saved frontend layout.
+Yes. Go to **Settings > Cr8v TOC > Layouts** and choose Manuscript, Soft Editorial, Brutalist, or Minimalist. The Active badge shows the saved frontend layout.
 
 = Can I preview changes before saving? =
 
@@ -140,11 +139,11 @@ Yes. Presets apply through the same color controls, with layout-aware handling w
 
 = Can I customize the typography? =
 
-Yes. TableWise includes controls for font family, link text, child text, label text, reading time, numbers, label letter spacing, label transform, and border radius.
+Yes. Cr8vstacks Table of Contents includes controls for font family, link text, child text, label text, reading time, numbers, label letter spacing, label transform, and border radius.
 
 = How do I make the TOC hidden by default? =
 
-Go to **Settings > TableWise > Display** and set "Default TOC state" to "Closed". You can also override this per post.
+Go to **Settings > Cr8v TOC > Display** and set "Default TOC state" to "Closed". You can also override this per post.
 
 = How does the sticky header work? =
 
@@ -152,27 +151,27 @@ When enabled, the TOC header sticks while the reader scrolls. Use "Sticky top of
 
 = Can I change the TOC title per post? =
 
-Yes. Use the TableWise sidebar panel in the Block Editor, the Classic Editor meta box, or Quick Edit controls.
+Yes. Use the Cr8vstacks Table of Contents sidebar panel in the Block Editor, the Classic Editor meta box, or Quick Edit controls.
 
-= Does TableWise work with Gutenberg? =
+= Does Cr8vstacks Table of Contents work with Gutenberg? =
 
-Yes. TableWise works with Block Editor headings, adds a Gutenberg sidebar panel for per-post controls, and can be placed manually with the Shortcode block.
+Yes. Cr8vstacks Table of Contents works with Block Editor headings, adds a Gutenberg sidebar panel for per-post controls, and can be placed manually with the Shortcode block.
 
 = Does a table of contents help SEO? =
 
-It can help indirectly. TableWise creates crawlable anchor links and clearer on-page navigation, which can improve scanability and user experience for long content. It is not a replacement for an SEO plugin that manages titles, meta descriptions, schema, sitemaps, or content analysis.
+It can help indirectly. Cr8vstacks Table of Contents creates crawlable anchor links and clearer on-page navigation, which can improve scanability and user experience for long content. It is not a replacement for an SEO plugin that manages titles, meta descriptions, schema, sitemaps, or content analysis.
 
-= Does TableWise require jQuery? =
+= Does Cr8vstacks Table of Contents require jQuery? =
 
 No. The frontend behavior is written without jQuery.
-
-= What CSS selector do I use for custom styles? =
-
-Use `.wptw-toc` as your root selector in the Custom CSS field. Internal elements use the `.wptw-toc__*` naming pattern.
 
 == Changelog ==
 
 = 1.3.0 =
+* Renamed the public plugin identity to Cr8vstacks Table of Contents and updated the WordPress.org text domain to `cr8vstacks-table-of-contents`
+* Removed the arbitrary CSS override field and output path for WordPress.org repository compliance
+* Moved Quick Edit and Classic Editor meta box CSS/JavaScript into enqueued asset files
+* Changed the TOC stylesheet builder to return CSS for `wp_add_inline_style()` instead of printing a raw style block
 * Added selectable TOC layouts: Minimalist, Manuscript, Soft Editorial, and Brutalist
 * Made Manuscript the default layout
 * Added saved Active badges for layouts and colour presets
@@ -204,10 +203,10 @@ Use `.wptw-toc` as your root selector in the Custom CSS field. Internal elements
 * Restyled Hide/Show buttons per layout
 * Strengthened light-preset borders and layout frame contrast
 * Added sticky settings-page header, admin footer, and cross-links between Layouts and Colours
-* Removed WordPress footer attribution from the TableWise settings screen
+* Removed WordPress footer attribution from the Cr8vstacks Table of Contents settings screen
 * Expanded README and WordPress readme documentation to cover the full layout, preview, color, typography, reader, and per-post feature set
 * Added Gutenberg, SEO, and content-navigation documentation to the readme
-* Updated Plugin URI to the TableWise landing page
+* Updated Plugin URI to the Cr8vstacks Table of Contents landing page
 
 = 1.2.0 =
 * Improved sticky header logic for better viewport tracking

@@ -1,4 +1,4 @@
-    /* WP TableWise settings — pure vanilla JS, no jQuery dependencies */
+    /* Cr8vstacks Table of Contents settings - pure vanilla JS, no jQuery dependencies */
     (function(){
         'use strict';
 
@@ -104,7 +104,7 @@
         var lastPreset = 'default';
         var savedPreset = 'default';
 
-        /* ── TABS ── */
+        /* TABS */
         var tabs   = document.querySelectorAll('.wptw-tab');
         var panels = document.querySelectorAll('.wptw-panel');
         function activateTab(id){
@@ -125,7 +125,7 @@
         var init; try{ init=localStorage.getItem('wptw_tab'); }catch(e){}
         activateTab(init||'visibility');
 
-        /* ── Segmented radio — keep .on class in sync ── */
+        /* Segmented radio - keep .on class in sync */
         document.querySelectorAll('.wptw-seg').forEach(function(seg){
             seg.querySelectorAll('input[type="radio"]').forEach(function(r){
                 r.addEventListener('change', function(){
@@ -135,14 +135,14 @@
             });
         });
 
-        /* ── Heading picker visual toggle ── */
+        /* Heading picker visual toggle */
         document.querySelectorAll('.wptw-hpick input').forEach(function(cb){
             cb.addEventListener('change', function(){
                 cb.closest('.wptw-hpick').classList.toggle('on', cb.checked);
             });
         });
 
-        /* ── Sliders synced to number inputs ── */
+        /* Sliders synced to number inputs */
         document.querySelectorAll('.wptw-slsync').forEach(function(sl){
             var numId = sl.dataset.num;
             var out   = sl.nextElementSibling; // <output>
@@ -152,7 +152,7 @@
             });
         });
 
-        /* ── Sticky offset slider ↔ number ── */
+        /* Sticky offset slider and number */
         var sRange = document.getElementById('wptw-sticky-range');
         var sOut   = document.getElementById('wptw-sticky-out');
         var sNum   = document.getElementById('wptw-sticky-num');
@@ -161,19 +161,19 @@
             sNum.addEventListener('input', function(){ sRange.value=sNum.value; if(sOut) sOut.textContent=sNum.value+'px'; });
         }
 
-        /* ── Sticky sub-field dim ── */
+        /* Sticky sub-field dim */
         var sToggle = document.getElementById('wptw-sticky-toggle');
         var sSub    = document.getElementById('wptw-sticky-sub');
         function dimSticky(){ if(sSub) sSub.style.opacity = (sToggle&&sToggle.checked)?'1':'0.4'; }
         if(sToggle){ sToggle.addEventListener('change', dimSticky); dimSticky(); }
 
-        /* ── Native colour inputs: show hex text + sync ── */
+        /* Native colour inputs: show hex text + sync */
         document.querySelectorAll('.wptw-color').forEach(function(inp){
             var hex = inp.nextElementSibling; // .wptw-chex
             inp.addEventListener('input', function(){ if(hex) hex.textContent = inp.value; });
         });
 
-        /* ── Per-colour reset buttons ── */
+        /* Per-colour reset buttons */
         document.querySelectorAll('.wptw-creset').forEach(function(btn){
             btn.addEventListener('click', function(){
                 var key = btn.dataset.key;
@@ -190,7 +190,7 @@
             });
         });
 
-        /* ── Colour presets ── */
+        /* Colour presets */
         document.querySelectorAll('.wptw-pbtn').forEach(function(btn){
             btn.addEventListener('click', function(){
                 if(btn.dataset.preset !== '__reset'){
@@ -207,7 +207,7 @@
             });
         });
 
-        /* ── Font preview ── */
+        /* Font preview */
         var fontSel = document.getElementById('wptw-font-family');
         var fontPrv = document.getElementById('wptw-font-preview');
         function showFontPreview(font){
@@ -470,7 +470,7 @@
         lastPreset = savedPreset;
         updatePreview();
 
-        /* ── Copy shortcode ── */
+        /* Copy shortcode */
         document.querySelectorAll('.wptw-copybtn').forEach(function(btn){
             btn.addEventListener('click', function(){
                 var t = btn.dataset.copy;
@@ -480,7 +480,7 @@
             });
         });
 
-        /* ── Save flash ── */
+        /* Save flash */
         if (window.wptwAdminSettings.settingsUpdated) {
         var sv = document.getElementById('wptw-saved');
         if(sv){ sv.classList.add('on'); setTimeout(function(){ sv.classList.remove('on'); }, 3000); }

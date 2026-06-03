@@ -1,14 +1,14 @@
-# TableWise
+﻿# Cr8vstacks Table of Contents
 
-TableWise is a customizable WordPress table of contents plugin for posts and pages. It turns page headings into a styled, accessible navigation block with multiple layouts, layout-aware color presets, live preview, reading progress, sticky behavior, and per-post controls.
+Cr8vstacks Table of Contents is a customizable WordPress table of contents plugin for posts and pages. It turns page headings into a styled, accessible navigation block with multiple layouts, layout-aware color presets, live preview, reading progress, sticky behavior, and per-post controls.
 
 ## Repository
 
 - GitHub: https://github.com/Cr8v-Stacks/Tablewise
-- Website: https://cr8vstacks.com/dev-playground/tablewise-table-of-content/
+- Website: https://cr8vstacks.com/dev-playground/cr8vstacks-table-of-contents/
 - Support: cr8vstacks@gmail.com
 
-## What TableWise Does
+## What Cr8vstacks Table of Contents Does
 
 - Builds a table of contents from selected heading levels, from H2 through H6.
 - Places the TOC before the first heading, after the first paragraph, or only where the `[wptw_toc]` shortcode is used.
@@ -19,12 +19,12 @@ TableWise is a customizable WordPress table of contents plugin for posts and pag
 
 ## Layouts
 
-TableWise includes four selectable frontend layouts. Each layout has its own markup treatment, spacing, child heading design, reading progress styling, and layout-native default color direction.
+Cr8vstacks Table of Contents includes four selectable frontend layouts. Each layout has its own markup treatment, spacing, child heading design, reading progress styling, and layout-native default color direction.
 
 - **Manuscript**: dark editorial layout with chapter-style timeline markers, amber progress, right-aligned reading time, and depth-aware child heading treatment.
 - **Soft Editorial**: clean editorial card with guided sections, dark/soft-dark typography, completed-state checkmarks, and nested child rows.
 - **Brutalist**: bold typographic layout with dark body, darker header, offset border extension, squared controls, high-contrast active rows, and nested child styling.
-- **Minimalist**: the original clean light card layout, kept for users who want the classic TableWise look.
+- **Minimalist**: the original clean light card layout, kept for users who want the classic Cr8vstacks Table of Contents look.
 
 ## Dashboard And Live Preview
 
@@ -35,11 +35,11 @@ The settings dashboard is organized into tabs for Visibility, Headings, Layouts,
 - Desktop/mobile preview toggle.
 - Saved Active badges for the current layout and color preset.
 - Shortcut links between Layouts and Colours.
-- Custom admin footer on the TableWise settings screen.
+- Custom admin footer on the Cr8vstacks Table of Contents settings screen.
 
 ## Design Customization
 
-TableWise is designed so each layout can keep its own personality while still being customizable.
+Cr8vstacks Table of Contents is designed so each layout can keep its own personality while still being customizable.
 
 - Six color presets: Default, Light, Dark, Ocean, Forest, and Rose.
 - Default preset restores each layout's native colors instead of forcing every layout into one shared palette.
@@ -48,8 +48,7 @@ TableWise is designed so each layout can keep its own personality while still be
 - Contrast normalization on save and in preview to reduce text/background clashes.
 - Typography controls for font family, link text, child text, label text, reading time, numbers, label letter spacing, label transform, and border radius.
 - Built-in font stack choices include system fonts plus Inter, DM Sans, Lato, Nunito, Open Sans, Poppins, Raleway, Roboto, Source Sans 3, Work Sans, Playfair Display, Merriweather, DM Mono, Fira Mono, and JetBrains Mono.
-- No remote font files are loaded by TableWise; font choices use local/theme-available font stacks.
-- Custom CSS field for deeper theme-specific adjustments.
+- No remote font files are loaded by Cr8vstacks Table of Contents; font choices use local/theme-available font stacks.
 
 ## Reader Features
 
@@ -73,13 +72,13 @@ Global settings can be overridden per post.
 
 ## Gutenberg Support
 
-TableWise works with headings created in the WordPress Block Editor. It adds a Gutenberg sidebar panel for per-post settings, supports manual placement through the Shortcode block, and keeps global dashboard settings and per-post overrides working together.
+Cr8vstacks Table of Contents works with headings created in the WordPress Block Editor. It adds a Gutenberg sidebar panel for per-post settings, supports manual placement through the Shortcode block, and keeps global dashboard settings and per-post overrides working together.
 
 ## SEO And Content Navigation
 
-TableWise can support SEO by creating a crawlable table of contents with stable heading anchors. This helps long-form content become easier to scan and navigate, and gives search engines clearer internal jump links to the sections on a page.
+Cr8vstacks Table of Contents can support SEO by creating a crawlable table of contents with stable heading anchors. This helps long-form content become easier to scan and navigate, and gives search engines clearer internal jump links to the sections on a page.
 
-TableWise does not replace a dedicated SEO plugin. It does not manage meta titles, meta descriptions, schema, XML sitemaps, or content scoring.
+Cr8vstacks Table of Contents does not replace a dedicated SEO plugin. It does not manage meta titles, meta descriptions, schema, XML sitemaps, or content scoring.
 
 ## Shortcode
 
@@ -101,14 +100,14 @@ Set the global or per-post position to shortcode-only when you want full manual 
 
 ## Installation
 
-1. Upload the `tablewise` folder to `/wp-content/plugins/`.
-2. Activate TableWise in WordPress.
-3. Go to **Settings > TableWise** to configure global behavior.
+1. Upload the `cr8vstacks-table-of-contents` folder to `/wp-content/plugins/`.
+2. Activate Cr8vstacks Table of Contents in WordPress.
+3. Go to **Settings > Cr8v TOC** to configure global behavior.
 4. Optionally override settings per post from the editor sidebar/meta box or Quick Edit.
 
 ## Development Notes
 
-- Main plugin file: `tablewise.php`
+- Main plugin file: `cr8vstacks-table-of-contents.php`
 - Settings dashboard and sanitization: `includes/settings-page.php`
 - Frontend rendering, CSS, and JS: `includes/frontend.php`
 - Defaults and layout definitions: `includes/defaults.php`

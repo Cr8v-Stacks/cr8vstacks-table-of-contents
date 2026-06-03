@@ -1,4 +1,4 @@
-﻿=== Cr8vstacks Table of Contents ===
+=== Cr8vstacks Table of Contents ===
 Contributors: cr8vstacks
 Tags: table of contents, toc, gutenberg, reading time, seo
 Requires at least: 5.8
@@ -7,231 +7,126 @@ Requires PHP: 7.4
 Stable tag: 1.3.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Plugin URI: https://cr8vstacks.com/dev-playground/cr8vstacks-table-of-contents/
-Support: cr8vstacks@gmail.com
 
-Customisable Table of Contents with layouts, live preview, active tracking, reading time, color presets, sticky headers, and per-post controls.
+Customizable table of contents with layouts, live preview, active tracking, reading time, sticky headers, and per-post controls.
 
 == Description ==
 
-Cr8vstacks Table of Contents automatically generates a polished, accessible Table of Contents for WordPress posts and pages. It gives site owners a complete TOC design system: multiple frontend layouts, live dashboard preview, layout-aware color presets, typography controls, reading progress, sticky behavior, and per-post overrides.
+Cr8vstacks Table of Contents automatically generates a polished, accessible table of contents for WordPress posts and pages. It builds links from your headings, adds stable anchors where needed, and gives readers a clearer way to move through long-form content.
 
-The plugin is built for real publishing workflows. You can keep the original clean card design, switch to a dark editorial manuscript layout, use a soft editorial card, or choose a bold brutalist TOC. Each layout includes its own header, body, child-heading treatment, progress styling, and Hide/Show button style.
+The plugin includes four frontend layouts: Manuscript, Soft Editorial, Brutalist, and Minimalist. Each layout has its own header treatment, body structure, child-heading styling, reading progress style, and Hide/Show button design.
 
-Cr8vstacks Table of Contents is also Gutenberg-friendly. It works with Block Editor content, adds a dedicated Cr8vstacks Table of Contents sidebar panel for per-post controls, and supports manual placement through the shortcode block using `[wptw_toc]`.
+Cr8vstacks Table of Contents is built for Gutenberg and classic publishing workflows. It works with Block Editor headings, adds a Block Editor sidebar for per-post controls, includes a Classic Editor meta box, supports Quick Edit, and can be placed manually with the `[wptw_toc]` shortcode.
 
-For SEO, Cr8vstacks Table of Contents outputs crawlable heading anchor links and structured on-page navigation. A clear table of contents can help readers and search engines understand long-form content, improve scanability, and support better internal jump-link navigation. It does not replace a full SEO plugin for metadata, schema, XML sitemaps, or content analysis.
+For SEO and content navigation, the plugin outputs crawlable anchor links and structured on-page navigation. This can help readers and search engines understand long articles, but it does not replace a dedicated SEO plugin for metadata, schema, sitemaps, or content scoring.
+
+= Key Features =
+
+* Auto-generates a TOC from selected heading levels, H2 through H6.
+* Preserves existing heading IDs when possible.
+* Adds generated anchors for headings that need them.
+* Configurable placement before the first heading, after the first paragraph, or shortcode only.
+* Four selectable layouts: Manuscript, Soft Editorial, Brutalist, and Minimalist.
+* Live dashboard preview using the same frontend stylesheet.
+* Color presets plus individual controls for card, header, links, numbers, progress, toggle, and back-to-top colors.
+* Typography controls for font stack, link size, child size, label size, reading time size, number size, label spacing, label transform, and border radius.
+* Reading time estimate with configurable words per minute.
+* Scroll reading progress indicator that matches the active layout.
+* Active-section highlighting and read/done states.
+* Sticky TOC header with configurable top offset.
+* Optional hierarchical numbering.
+* Optional back-to-top button.
+* Per-post controls for disabling the TOC, title, state, placement, numbers, sticky header, and reading time.
+* No remote font files are loaded; font choices use local or theme-available font stacks.
+* Frontend behavior does not require jQuery.
 
 = Layouts =
 
-* Manuscript: dark editorial layout with chapter-style timeline markers, amber progress, right-aligned reading time, and depth-aware child heading treatment.
-* Soft Editorial: clean editorial card with guided sections, completed-state checkmarks, dark/soft-dark typography, and nested child rows.
-* Brutalist: bold typographic layout with dark body, darker header, offset border extension, squared controls, high-contrast active rows, and nested child styling.
-* Minimalist: the original clean light card layout for users who prefer the classic Cr8vstacks Table of Contents look.
+* Manuscript: dark editorial chapter style with timeline markers, amber progress, and depth-aware child links.
+* Soft Editorial: clean card layout with guided sections, completed-state checkmarks, and nested child rows.
+* Brutalist: bold dark layout with darker header, offset border extension, squared controls, and high-contrast active rows.
+* Minimalist: original clean light card layout for a simple classic TOC.
 
-= Dashboard And Live Preview =
+= Gutenberg And Per-Post Controls =
 
-* Redesigned settings dashboard with Visibility, Headings, Layouts, Display, Colours, Typography, and Advanced tabs.
-* Wider live preview that uses the same frontend stylesheet as the public TOC.
-* Desktop/mobile preview toggle.
-* Sticky dashboard header for easier editing.
-* Saved Active badges for the current layout and color preset.
-* Shortcut links between Layouts and Colours.
-* Custom Cr8vstacks Table of Contents admin footer on the settings screen.
+Cr8vstacks Table of Contents supports headings created in the WordPress Block Editor. The Block Editor sidebar lets editors override TOC settings per post without changing global defaults.
 
-= Display And Behaviour =
-
-* Auto-generates a TOC from selected heading levels, from H2 through H6.
-* Supports public post types, minimum heading count, excluded post IDs, and custom anchor prefixes.
-* Preserves existing heading IDs when possible and generates anchors for headings that need them.
-* Configurable placement: before first heading, after first paragraph, or manual via shortcode.
-* Default open or closed state, with per-post override support.
-* Smooth scroll with configurable offset for sticky site headers.
-* Active-section highlighting using the IntersectionObserver API.
-* Animated expand/collapse with accessible ARIA attributes.
-* Optional hierarchical section numbering.
-* Optional back-to-top button.
-
-= Reading Experience =
-
-* Estimated reading time displayed in the TOC header.
-* Configurable words-per-minute rate.
-* Scroll reading progress indicator that matches the active layout.
-* Read/done states for sections the reader has passed.
-* Sticky TOC header with configurable top offset for fixed site navigation.
-* Layout-specific Hide/Show controls.
+Per-post controls are also available in the Classic Editor meta box and Quick Edit. Manual placement is available through the Shortcode block with `[wptw_toc]`.
 
 = Design Controls =
 
-* Six color presets: Default, Light, Dark, Ocean, Forest, and Rose.
-* Default preset restores each layout's native colors instead of forcing every layout into one shared palette.
-* Layout-aware Dark preset so dark mode fits each layout's design.
-* Seventeen color controls covering card, border, header, label, reading time, progress, toggle button, links, active state, numbers, and back-to-top button.
-* Contrast normalization on save and in preview to reduce text/background clashes.
-* Typography controls for font family, link text, child text, label text, reading time, numbers, label letter spacing, label transform, and border radius.
-* Font stack options include system fonts plus Inter, DM Sans, Lato, Nunito, Open Sans, Poppins, Raleway, Roboto, Source Sans 3, Work Sans, Playfair Display, Merriweather, DM Mono, Fira Mono, and JetBrains Mono.
-* No remote font files are loaded by Cr8vstacks Table of Contents; font choices use local/theme-available font stacks.
+The settings dashboard includes Visibility, Headings, Layouts, Display, Colours, Typography, and Advanced tabs. The live preview updates before saving so site owners can test layouts, color presets, typography, display options, progress indicators, and visibility behavior.
 
-= Per-Post Control =
-
-* Classic Editor meta box with key overrides.
-* Block Editor sidebar panel via registerPlugin.
-* Gutenberg-friendly shortcode placement through the Shortcode block.
-* Quick Edit support from the posts list.
-* Per-post controls for disabling the TOC, title, initial state, placement, numbers, sticky header, and reading time.
-
-= Gutenberg And Block Editor Support =
-
-* Works with headings created in the WordPress Block Editor.
-* Adds a dedicated Cr8vstacks Table of Contents sidebar panel for per-post settings.
-* Supports manual TOC placement with the Shortcode block.
-* Keeps global dashboard settings and per-post Gutenberg overrides in sync.
+The Default color preset restores each layout's native palette. Light, Dark, Ocean, Forest, and Rose presets can be customized through the same color controls.
 
 = SEO And Content Navigation =
 
-* Outputs regular HTML links to heading anchors, so the TOC is crawlable.
-* Preserves existing heading IDs when possible and generates stable anchors where needed.
-* Helps long-form posts become easier to scan, navigate, and understand.
-* Supports better user engagement by reducing friction in long content.
-* Complements SEO plugins, but does not replace metadata, schema, sitemap, or content optimization tools.
-
-= Developer-Friendly =
-
-* No jQuery required on the frontend.
-* CSS custom properties for easier theme integration.
-* Theme hardening for TOC links, lists, buttons, labels, numbers, and layout surfaces.
-* `[wptw_toc]` shortcode for manual placement.
-* Clean, namespaced code using the `wptw_` prefix.
-* Uninstall hook clears plugin data.
+The plugin can help SEO indirectly by creating crawlable heading anchor links and clearer internal jump navigation for long-form content. Better structure can improve scanability and reader engagement. It does not manage meta titles, descriptions, schema, XML sitemaps, or keyword analysis.
 
 == Installation ==
 
 1. Upload the `cr8vstacks-table-of-contents` folder to `/wp-content/plugins/`.
-2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Go to **Settings > Cr8v TOC** to configure global behavior.
-4. Optionally override settings per post through the editor sidebar/meta box or Quick Edit.
+2. Activate the plugin through the Plugins menu in WordPress.
+3. Go to Settings > Cr8v TOC to configure global behavior.
+4. Optionally override settings per post through the editor sidebar, meta box, or Quick Edit.
 
 == Shortcode ==
 
-Use `[wptw_toc]` anywhere in your content when Position is set to "Manual - shortcode only". All layout, color, typography, display, and per-post settings still apply.
+Use `[wptw_toc]` anywhere in your content when Position is set to "shortcode only". Layout, color, typography, display, and per-post settings still apply.
 
 == Frequently Asked Questions ==
 
 = Will the TOC always appear? =
 
-No. The TOC only appears if the post type is enabled, the post meets the minimum heading count, the post ID is not excluded, and TOC is not disabled for that specific post.
+No. The TOC only appears if the post type is enabled, the post meets the minimum heading count, the post ID is not excluded, and TOC is not disabled for that post.
 
-= Can I switch between different TOC designs? =
+= Can I switch between TOC designs? =
 
-Yes. Go to **Settings > Cr8v TOC > Layouts** and choose Manuscript, Soft Editorial, Brutalist, or Minimalist. The Active badge shows the saved frontend layout.
+Yes. Go to Settings > Cr8v TOC > Layouts and choose Manuscript, Soft Editorial, Brutalist, or Minimalist.
 
 = Can I preview changes before saving? =
 
 Yes. The dashboard includes a live preview for layout, color, typography, display, progress, and visibility settings.
 
-= What does the Default color preset do? =
+= Does it work with Gutenberg? =
 
-Default restores the active layout's native color scheme. It is different from Light, which is a shared light preset.
-
-= Can every layout use the color presets? =
-
-Yes. Presets apply through the same color controls, with layout-aware handling where a layout needs its own dark or native color direction.
-
-= Can I customize the typography? =
-
-Yes. Cr8vstacks Table of Contents includes controls for font family, link text, child text, label text, reading time, numbers, label letter spacing, label transform, and border radius.
-
-= How do I make the TOC hidden by default? =
-
-Go to **Settings > Cr8v TOC > Display** and set "Default TOC state" to "Closed". You can also override this per post.
-
-= How does the sticky header work? =
-
-When enabled, the TOC header sticks while the reader scrolls. Use "Sticky top offset" to clear fixed site headers or admin bars.
-
-= Can I change the TOC title per post? =
-
-Yes. Use the Cr8vstacks Table of Contents sidebar panel in the Block Editor, the Classic Editor meta box, or Quick Edit controls.
-
-= Does Cr8vstacks Table of Contents work with Gutenberg? =
-
-Yes. Cr8vstacks Table of Contents works with Block Editor headings, adds a Gutenberg sidebar panel for per-post controls, and can be placed manually with the Shortcode block.
+Yes. It works with Block Editor headings, adds a sidebar panel for per-post controls, and can be placed manually with the Shortcode block.
 
 = Does a table of contents help SEO? =
 
-It can help indirectly. Cr8vstacks Table of Contents creates crawlable anchor links and clearer on-page navigation, which can improve scanability and user experience for long content. It is not a replacement for an SEO plugin that manages titles, meta descriptions, schema, sitemaps, or content analysis.
+It can help indirectly by creating crawlable anchor links and clearer on-page navigation. It is not a replacement for an SEO plugin that manages metadata, schema, sitemaps, or content analysis.
 
-= Does Cr8vstacks Table of Contents require jQuery? =
+= Does the frontend require jQuery? =
 
-No. The frontend behavior is written without jQuery.
+No. The frontend script is written without jQuery.
 
 == Changelog ==
 
 = 1.3.0 =
-* Renamed the public plugin identity to Cr8vstacks Table of Contents and updated the WordPress.org text domain to `cr8vstacks-table-of-contents`
-* Removed the arbitrary CSS override field and output path for WordPress.org repository compliance
-* Moved Quick Edit and Classic Editor meta box CSS/JavaScript into enqueued asset files
-* Changed the TOC stylesheet builder to return CSS for `wp_add_inline_style()` instead of printing a raw style block
-* Added selectable TOC layouts: Minimalist, Manuscript, Soft Editorial, and Brutalist
-* Made Manuscript the default layout
-* Added saved Active badges for layouts and colour presets
-* Redesigned the settings dashboard with a wider live preview and dedicated Layouts tab
-* Added live preview updates for layout, colour, typography, display, progress, and visibility controls
-* Restored the original TOC as the Minimalist layout option
-* Reworked layouts to render H2 entries as primary sections and H3-H6 entries as depth-aware child links
-* Tightened layout and colour preset compatibility so header and body backgrounds stay visually distinct
-* Updated Brutalist and Editorial header colour handling to respect preset background rules
-* Reworked admin live preview overrides so preview layout styling tracks the frontend more closely
-* Replaced the duplicated admin preview layout stylesheet with the same TOC stylesheet used on the frontend
-* Disabled stale preview-only layout rules that were preventing non-Minimalist previews from matching frontend output
-* Disabled old global admin layout selectors so preview headers and bodies are styled only by the shared frontend stylesheet
-* Synced admin preview read/active state handling with the frontend state classes for layout-specific body styling
-* Consolidated Manuscript header and body styling into a final shared stylesheet block used by frontend and admin preview
-* Reworked Manuscript to more closely follow the sample mockup: mono eyebrow header, dark editorial body, serif titles, subdued read states, and amber progress
-* Fixed Manuscript timeline alignment so the vertical line runs through the center of the circle nodes
-* Simplified Manuscript header controls to match the sample mockup's single-eyebrow header treatment
-* Rebuilt Manuscript markup to match the sample structure instead of forcing the generic TOC header/list wrappers to imitate it
-* Fixed a PHP 7.4 compatibility issue that could stop the admin live preview script from loading
-* Matched layout-specific reading progress indicators across frontend, sticky header, and admin preview
-* Improved progress indicator contrast for dark headers and dark layout backgrounds
-* Improved Soft Editorial completed-state numbering so only read items show checkmarks
-* Fixed duplicate Manuscript markers and refined Brutalist spacing, active state, and offset border treatment
-* Removed the Minimalist left-accent active-row treatment
-* Hardened TOC text, link, list, and button styles against theme defaults
-* Restored legacy colour preset behavior while preserving layout-native Default and Dark variants
-* Fixed Sticky TOC support for Manuscript and confirmed Sticky top offset applies to all layouts
-* Restyled Hide/Show buttons per layout
-* Strengthened light-preset borders and layout frame contrast
-* Added sticky settings-page header, admin footer, and cross-links between Layouts and Colours
-* Removed WordPress footer attribution from the Cr8vstacks Table of Contents settings screen
-* Expanded README and WordPress readme documentation to cover the full layout, preview, color, typography, reader, and per-post feature set
-* Added Gutenberg, SEO, and content-navigation documentation to the readme
-* Updated Plugin URI to the Cr8vstacks Table of Contents landing page
+* Renamed the public plugin identity to Cr8vstacks Table of Contents and updated the WordPress.org text domain to `cr8vstacks-table-of-contents`.
+* Removed the arbitrary CSS override field and output path for WordPress.org repository compliance.
+* Moved Quick Edit and Classic Editor meta box CSS and JavaScript into enqueued asset files.
+* Changed the TOC stylesheet builder to return CSS for `wp_add_inline_style()`.
+* Added selectable TOC layouts: Minimalist, Manuscript, Soft Editorial, and Brutalist.
+* Made Manuscript the default layout.
+* Added saved Active badges for layouts and colour presets.
+* Redesigned the settings dashboard with a wider live preview and dedicated Layouts tab.
+* Reworked layouts so H2 entries render as primary sections and H3-H6 entries render as depth-aware child links.
+* Matched layout-specific reading progress indicators across frontend, sticky header, and admin preview.
+* Hardened TOC text, link, list, and button styles against theme defaults.
+* Restyled Hide/Show buttons per layout.
+* Added sticky settings-page header, admin footer, and cross-links between Layouts and Colours.
+* Added Gutenberg, SEO, and content-navigation documentation.
 
 = 1.2.0 =
-* Improved sticky header logic for better viewport tracking
-* Added Per-Post Settings via Gutenberg Sidebar (registerPlugin)
-* Enhanced Quick Edit integration with expanded controls
-* Refined reading time estimation with configurable WPM
-* Fixed a TOC nesting bug where the table could latch on non-article paragraphs
-* General performance and accessibility improvements
+* Improved sticky header logic.
+* Added per-post settings via Gutenberg sidebar.
+* Enhanced Quick Edit integration.
+* Refined reading time estimation.
+* Added performance and accessibility improvements.
 
 = 1.1.0 =
-* Complete plugin rewrite
-* Added sticky TOC header with configurable top offset and stuck-shadow feedback
-* Added per-post meta box (Classic Editor) with disable, state, position, title, numbers, sticky, reading-time overrides
-* Added Gutenberg sidebar panel via registerPlugin API
-* Added Quick Edit column with inline TOC controls
-* Added 5 colour presets (Light, Dark, Ocean, Forest, Rose)
-* Added `color_active_bg`, `color_back_top_bg`, `color_back_top_fg` colour controls
-* Added configurable words-per-minute for reading time
-* Added back-to-top floating button with smooth scroll back to TOC
-* Added uninstall cleanup hook
-* Improved anchor handling - preserves existing heading IDs
-* IntersectionObserver used for both active highlighting and sticky detection
-* All CSS refactored to custom properties for easy theming
-* Renamed shortcode to `[wptw_toc]`
-* Author: Cr8v Stacks (https://cr8vstacks.com)
+* Added sticky TOC header, per-post controls, Quick Edit support, color presets, reading time, back-to-top button, and active highlighting.
 
 = 1.0.0 =
-* Initial release
+* Initial release.

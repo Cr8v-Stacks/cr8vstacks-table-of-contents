@@ -6,6 +6,7 @@
 - Removed the arbitrary CSS override settings field and output path for WordPress.org repository compliance.
 - Moved Quick Edit and Classic Editor meta box CSS/JavaScript into enqueued asset files.
 - Changed the TOC stylesheet builder to return CSS for `wp_add_inline_style()` instead of printing a raw style block.
+- Trimmed the WordPress.org `readme.txt` to keep the repository-facing documentation concise and under the recommended size warning zone.
 - Added selectable TOC layouts: Minimalist, Manuscript, Soft Editorial, and Brutalist.
 - Renamed the original layout to Minimalist and made Manuscript the default layout.
 - Added a dedicated Layouts tab in the dashboard.

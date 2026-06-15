@@ -1124,7 +1124,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         margin: 0;
     }
     .wptw-toc--layout-brutalist .toc-brut-progress-fill {
-        background: color-mix(in srgb, var(--wptw-bg) 82%, var(--wptw-rtbar-fill));
+        background: var(--wptw-rtbar-fill);
     }
 
     /* â•â•â• STICKY BAR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -1497,7 +1497,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         height: 2px;
     }
     .wptw-sticky-bar.wptw-toc--layout-manuscript .wptw-toc__prog-fill {
-        background: color-mix(in srgb, var(--wptw-bg) 82%, var(--wptw-bar));
+        background: var(--wptw-bar);
     }
     .wptw-sticky-bar.wptw-toc--layout-editorial .wptw-toc__prog {
         background: var(--wptw-rtbar-bg);
@@ -1508,7 +1508,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         height: 4px;
     }
     .wptw-sticky-bar.wptw-toc--layout-brutalist .wptw-toc__prog-fill {
-        background: color-mix(in srgb, var(--wptw-bg) 82%, var(--wptw-rtbar-fill));
+        background: var(--wptw-rtbar-fill);
     }
     .wptw-sticky-bar .wptw-toc__head-left {
         display:     flex;

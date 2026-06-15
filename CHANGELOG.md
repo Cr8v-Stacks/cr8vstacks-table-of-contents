@@ -1,22 +1,11 @@
 # Changelog
 
-## 1.3.4
+## 1.3.0
 
 - Added `!important` to layout header `display` rules (`.wptw-toc__head` and `.toc-manuscript-eyebrow`) to prevent third-party title-disabling/hiding scripts from hiding the TOC headers on pages without an `H1`.
-
-## 1.3.3
-
 - Wrapped the Table of Contents container in a `.wptw-toc-wrapper` element styled with `clear: both; display: flow-root;` to prevent margin collapsing below cleared floated elements and ensure top margin clearance applies properly.
-
-## 1.3.2
-
 - Adjusted the Table of Contents margin-top to `2.75rem` to ensure adequate clearance between the TOC and preceding floated elements (like left/right aligned images) once cleared.
-
-## 1.3.1
-
 - Added CSS `clear: both;` to the `.wptw-toc` card layout to prevent preceding floated elements (like left/right aligned images) from overlapping or breaking the TOC container flow.
-
-## 1.3.0
 
 - Renamed the public plugin identity to Cr8vstacks Table of Contents and updated the WordPress.org text domain to `cr8vstacks-table-of-contents`.
 - Removed the arbitrary CSS override settings field and output path for WordPress.org repository compliance.

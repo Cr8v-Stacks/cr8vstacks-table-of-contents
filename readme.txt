@@ -4,7 +4,7 @@ Tags: table of contents, toc, gutenberg, reading time, seo
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,12 @@ It can help indirectly by creating crawlable anchor links and clearer on-page na
 No. The frontend script is written without jQuery.
 
 == Changelog ==
+
+= 1.3.2 =
+* Adjusted the TOC top margin to 2.75rem to create adequate clearance between the TOC and preceding cleared floated images.
+
+= 1.3.1 =
+* Fixed a bug where left-aligned or right-aligned images before the first heading would overlap with or float next to the TOC.
 
 = 1.3.0 =
 * Renamed the public plugin identity to Cr8vstacks Table of Contents and updated the WordPress.org text domain to `cr8vstacks-table-of-contents`.

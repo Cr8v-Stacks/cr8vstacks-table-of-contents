@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.2
+
+- Adjusted the Table of Contents margin-top to `2.75rem` to ensure adequate clearance between the TOC and preceding floated elements (like left/right aligned images) once cleared.
+
+## 1.3.1
+
+- Added CSS `clear: both;` to the `.wptw-toc` card layout to prevent preceding floated elements (like left/right aligned images) from overlapping or breaking the TOC container flow.
+
 ## 1.3.0
 
 - Renamed the public plugin identity to Cr8vstacks Table of Contents and updated the WordPress.org text domain to `cr8vstacks-table-of-contents`.

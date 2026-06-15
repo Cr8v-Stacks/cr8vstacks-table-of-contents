@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.3
+
+- Wrapped the Table of Contents container in a `.wptw-toc-wrapper` element styled with `clear: both; display: flow-root;` to prevent margin collapsing below cleared floated elements and ensure top margin clearance applies properly.
+
 ## 1.3.2
 
 - Adjusted the Table of Contents margin-top to `2.75rem` to ensure adequate clearance between the TOC and preceding floated elements (like left/right aligned images) once cleared.

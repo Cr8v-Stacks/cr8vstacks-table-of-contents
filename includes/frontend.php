@@ -166,7 +166,8 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
         $section_groups[ $last ]['children'][] = $item;
     }
 
-    $out  = '<div class="wptw-toc wptw-toc--layout-' . esc_attr( $layout ) . $sticky_cls . '" id="' . esc_attr( $toc_id ) . '" role="navigation" aria-label="' . esc_attr__('Table of contents','cr8vstacks-table-of-contents') . '">';
+    $out  = '<div class="wptw-toc-wrapper">';
+    $out .= '<div class="wptw-toc wptw-toc--layout-' . esc_attr( $layout ) . $sticky_cls . '" id="' . esc_attr( $toc_id ) . '" role="navigation" aria-label="' . esc_attr__('Table of contents','cr8vstacks-table-of-contents') . '">';
 
     if ( $layout === 'default' ) {
         $out .= '<div class="wptw-toc__head">';
@@ -252,6 +253,7 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
     }
 
     $out .= '</div>'; /* /.wptw-toc */
+    $out .= '</div>'; /* /.wptw-toc-wrapper */
 
     static $btt_done = false;
     if ( ! $btt_done && (bool) wptw_get('back_to_top') ) {
@@ -320,6 +322,10 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     }
 
     /* â”€â”€ Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .wptw-toc-wrapper {
+        clear:         both;
+        display:       flow-root;
+    }
     .wptw-toc {
         font-family:   var(--wptw-font);
         background:    var(--wptw-bg);
@@ -328,7 +334,6 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         border-radius: var(--wptw-radius);
         margin:        2.75rem 0 2.25rem;
         position:      relative;
-        clear:         both;
     }
     .wptw-toc,
     .wptw-toc * {

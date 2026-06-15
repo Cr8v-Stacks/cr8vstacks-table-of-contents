@@ -4,7 +4,7 @@ Tags: table of contents, toc, gutenberg, reading time, seo
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,9 @@ It can help indirectly by creating crawlable anchor links and clearer on-page na
 No. The frontend script is written without jQuery.
 
 == Changelog ==
+
+= 1.3.4 =
+* Hardened layout header visibility by using display: flex !important, preventing third-party title-disabling/hiding scripts from hiding TOC headers on H1-less pages.
 
 = 1.3.3 =
 * Added a container wrapper with clear: both and display: flow-root to prevent margin collapsing below cleared floated elements and ensure top margin clearance applies properly.

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.4
+
+- Added `!important` to layout header `display` rules (`.wptw-toc__head` and `.toc-manuscript-eyebrow`) to prevent third-party title-disabling/hiding scripts from hiding the TOC headers on pages without an `H1`.
+
 ## 1.3.3
 
 - Wrapped the Table of Contents container in a `.wptw-toc-wrapper` element styled with `clear: both; display: flow-root;` to prevent margin collapsing below cleared floated elements and ensure top margin clearance applies properly.

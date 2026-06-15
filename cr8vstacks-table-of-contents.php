@@ -3,7 +3,7 @@
  * Plugin Name:       Cr8vstacks Table of Contents
  * Plugin URI:        https://cr8vstacks.com/dev-playground/cr8vstacks-table-of-contents/
  * Description:       A clean, minimal, and highly customizable Table of Contents plugin. Supports sticky headers, per-post overrides, active-section tracking, reading time estimates, and a full settings panel.
- * Version:           1.3.3
+ * Version:           1.3.4
  * Requires at least: 5.8
  * Tested up to:      7.0
  * Requires PHP:      7.4
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WPTW_VERSION', '1.3.3' );
+define( 'WPTW_VERSION', '1.3.4' );
 define( 'WPTW_DIR',     plugin_dir_path( __FILE__ ) );
 define( 'WPTW_URL',     plugin_dir_url( __FILE__ ) );
 define( 'WPTW_OPTION',  'wptw_settings' );

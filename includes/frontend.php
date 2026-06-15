@@ -366,7 +366,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
 
     /* â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .wptw-toc__head {
-        display:         flex;
+        display:         flex !important;
         align-items:     center;
         justify-content: space-between;
         padding:         11px 18px;
@@ -1155,7 +1155,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
             var(--wptw-ms-head);
         border-bottom: 1px solid color-mix(in srgb, var(--wptw-ms-text) 8%, transparent);
         color: var(--wptw-ms-accent);
-        display: flex;
+        display: flex !important;
         font-family: var(--wptw-mono);
         font-size: var(--wptw-label-sz);
         justify-content: space-between;

@@ -103,6 +103,7 @@ No. The frontend script is written without jQuery.
 == Changelog ==
 
 = 1.3.0 =
+* Fixed a layout clipping bug where the last list item inside expanded TOC cards got cut off at the bottom due to a hardcoded load-time pixel height calculation.
 * Added dynamic offset detection for the WordPress admin bar to adjust scroll, sticky top, and active tracking.
 * Added :focus-visible outline styles to TOC links and buttons for keyboard accessibility.
 * Filtered out empty or whitespace-only headings (like headings with only image tags) to prevent blank TOC entries.

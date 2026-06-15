@@ -2,6 +2,7 @@
 
 ## 1.3.0
 
+- Fixed a layout clipping bug where the last list item inside expanded TOC cards got cut off at the bottom due to a hardcoded load-time pixel height calculation.
 - Added dynamic offset detection for the WordPress admin bar (`#wpadminbar`) to automatically adjust scroll offset, sticky header top offset, and active section tracking.
 - Added `:focus-visible` outline styles to TOC links and buttons to preserve proper keyboard focus styling for accessibility.
 - Filtered out empty or whitespace-only headings (e.g. headings containing only image tags) to prevent blank entry items in the TOC.

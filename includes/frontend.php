@@ -1605,10 +1605,6 @@ function wptw_frontend_scripts() {
                 var rtSpan   = toc.querySelector('.wptw-toc__rt');
                 if (!list || !body) return;
 
-                /* Natural height for CSS transition */
-                if (toggle && toggle.getAttribute('aria-expanded') === 'true') {
-                    list.style.height = list.scrollHeight + 'px';
-                }
 
                 /* Layout state interaction: mirrors the design mockup click behaviour. */
                 var tocItems = Array.prototype.slice.call(toc.querySelectorAll('.wptw-toc__item'));

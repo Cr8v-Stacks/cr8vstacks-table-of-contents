@@ -332,8 +332,9 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         border:        1px solid var(--wptw-border);
         border-color:  color-mix(in srgb, var(--wptw-border) 72%, var(--wptw-link) 28%);
         border-radius: var(--wptw-radius);
-        margin:        2.75rem 0 2.25rem;
+        margin:        2.75rem auto 2.25rem;
         position:      relative;
+        max-width:     820px;
     }
     .wptw-toc,
     .wptw-toc * {

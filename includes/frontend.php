@@ -791,7 +791,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-toc--layout-editorial .toc-ed-dot {
         align-items: center;
         background: var(--wptw-bg);
-        border: 1.5px solid var(--wptw-border);
+        border: 1.5px solid color-mix(in srgb, var(--wptw-border) 40%, var(--wptw-link) 60%);
         border-radius: 50%;
         color: var(--wptw-rt-c);
         display: flex;
@@ -893,7 +893,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     }
     .wptw-toc--layout-brutalist .toc-brut-check {
         align-items: center;
-        border: 1.5px solid var(--wptw-border);
+        border: 1.5px solid color-mix(in srgb, var(--wptw-border) 40%, var(--wptw-link) 60%);
         border-radius: 2px;
         display: flex;
         flex: 0 0 14px;

@@ -103,6 +103,7 @@ No. The frontend script is written without jQuery.
 == Changelog ==
 
 = 1.3.0 =
+* Updated check and dot border contrast rules for Brutalist and Soft Editorial layouts, blending the borders with the active text color using CSS color-mix to guarantee legibility on both light and dark presets.
 * Fixed a layout clipping bug where the last list item inside expanded TOC cards got cut off at the bottom due to a hardcoded load-time pixel height calculation.
 * Added dynamic offset detection for the WordPress admin bar to adjust scroll, sticky top, and active tracking.
 * Added :focus-visible outline styles to TOC links and buttons for keyboard accessibility.

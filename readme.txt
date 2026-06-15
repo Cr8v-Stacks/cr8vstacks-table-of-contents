@@ -103,6 +103,10 @@ No. The frontend script is written without jQuery.
 == Changelog ==
 
 = 1.3.0 =
+* Added dynamic offset detection for the WordPress admin bar to adjust scroll, sticky top, and active tracking.
+* Added :focus-visible outline styles to TOC links and buttons for keyboard accessibility.
+* Filtered out empty or whitespace-only headings (like headings with only image tags) to prevent blank TOC entries.
+* Constrained the Table of Contents card to a maximum width of 820px and centered it horizontally on wide/full-width templates.
 * Hardened layout header visibility by using display: flex !important, preventing third-party title-disabling/hiding scripts from hiding TOC headers on H1-less pages.
 * Added a container wrapper with clear: both and display: flow-root to prevent margin collapsing below cleared floated elements and ensure top margin clearance applies properly.
 * Adjusted the TOC top margin to 2.75rem to create adequate clearance between the TOC and preceding cleared floated images.

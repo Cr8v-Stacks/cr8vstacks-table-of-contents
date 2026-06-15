@@ -111,7 +111,8 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
         $depth  = (int) $match[1];
         $attrs  = $match[2];
         $inner  = $match[3];
-        $title  = wp_strip_all_tags( $inner );
+        $title  = trim( wp_strip_all_tags( $inner ) );
+        if ( $title === '' ) continue;
         $anchor = $prefix . '-' . $i . $pid_sfx;
 
         $idx = $depth - 2;
@@ -358,6 +359,12 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-toc a:focus {
         box-shadow: none !important;
         text-decoration: none !important;
+    }
+    .wptw-toc a:focus-visible,
+    .wptw-toc button:focus-visible,
+    .wptw-sticky-bar button:focus-visible {
+        outline: 2px solid var(--wptw-bar, currentColor) !important;
+        outline-offset: 1px !important;
     }
     .wptw-toc button {
         appearance: none;
@@ -1574,6 +1581,13 @@ function wptw_frontend_scripts() {
         var cfg = <?php echo wp_json_encode($cfg); ?>;
 
         document.addEventListener('DOMContentLoaded', function(){
+            /* Adjust offsets dynamically for WordPress Admin Bar if present */
+            var adminBar = document.getElementById('wpadminbar');
+            if (adminBar) {
+                var barHeight = adminBar.offsetHeight || 0;
+                cfg.stickyTop += barHeight;
+                cfg.scrollOffset += barHeight;
+            }
 
             /* â•â• Helper: get live rect of TOC card â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
             function getCardRect(toc) {

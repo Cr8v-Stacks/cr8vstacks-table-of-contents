@@ -2,6 +2,10 @@
 
 ## 1.3.0
 
+- Added dynamic offset detection for the WordPress admin bar (`#wpadminbar`) to automatically adjust scroll offset, sticky header top offset, and active section tracking.
+- Added `:focus-visible` outline styles to TOC links and buttons to preserve proper keyboard focus styling for accessibility.
+- Filtered out empty or whitespace-only headings (e.g. headings containing only image tags) to prevent blank entry items in the TOC.
+- Constrained the Table of Contents card to a maximum width of `820px` and centered it (`margin: 2.75rem auto 2.25rem`) to keep the layout clean and cohesive on full-width page templates.
 - Added `!important` to layout header `display` rules (`.wptw-toc__head` and `.toc-manuscript-eyebrow`) to prevent third-party title-disabling/hiding scripts from hiding the TOC headers on pages without an `H1`.
 - Wrapped the Table of Contents container in a `.wptw-toc-wrapper` element styled with `clear: both; display: flow-root;` to prevent margin collapsing below cleared floated elements and ensure top margin clearance applies properly.
 - Adjusted the Table of Contents margin-top to `2.75rem` to ensure adequate clearance between the TOC and preceding floated elements (like left/right aligned images) once cleared.

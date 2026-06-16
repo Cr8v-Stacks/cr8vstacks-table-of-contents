@@ -66,6 +66,7 @@ Global settings can be overridden per post.
 
 - Classic Editor meta box.
 - Gutenberg sidebar panel.
+- Elementor Page Settings panel (on/off switcher to disable the TOC).
 - Gutenberg-friendly shortcode placement through the Shortcode block.
 - Quick Edit support from the posts list.
 - Per-post controls for disabling the TOC, title, initial state, placement, numbers, sticky header, and reading time.

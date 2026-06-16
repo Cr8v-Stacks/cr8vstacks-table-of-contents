@@ -30,6 +30,7 @@ require_once WPTW_DIR . 'includes/meta-box.php';
 require_once WPTW_DIR . 'includes/quick-edit.php';
 require_once WPTW_DIR . 'includes/frontend.php';
 require_once WPTW_DIR . 'includes/shortcode.php';
+require_once WPTW_DIR . 'includes/elementor.php';
 
 register_activation_hook( __FILE__, function () {
     if ( ! get_option( WPTW_OPTION ) ) {

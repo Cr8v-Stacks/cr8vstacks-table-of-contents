@@ -137,8 +137,17 @@ function wptw_get( string $key = '' ) {
 }
 
 function wptw_post_meta( int $post_id ): array {
-    $raw = get_post_meta( $post_id, WPTW_META, true );
-    return is_array( $raw ) ? $raw : [];
+    $raw  = get_post_meta( $post_id, WPTW_META, true );
+    $meta = is_array( $raw ) ? $raw : [];
+
+    if ( class_exists( '\Elementor\Plugin' ) ) {
+        $elementor_settings = get_post_meta( $post_id, '_elementor_page_settings', true );
+        if ( is_array( $elementor_settings ) && isset( $elementor_settings['wptw_disable_toc'] ) ) {
+            $meta['disable'] = ( $elementor_settings['wptw_disable_toc'] === 'yes' ) ? 1 : 0;
+        }
+    }
+
+    return $meta;
 }
 
 function wptw_effective( string $key, int $post_id = 0 ) {

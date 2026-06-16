@@ -47,11 +47,11 @@ For SEO and content navigation, the plugin outputs crawlable anchor links and st
 * Brutalist: bold dark layout with darker header, offset border extension, squared controls, and high-contrast active rows.
 * Minimalist: original clean light card layout for a simple classic TOC.
 
-= Gutenberg And Per-Post Controls =
+= Gutenberg, Elementor And Per-Post Controls =
 
-Cr8vstacks Table of Contents supports headings created in the WordPress Block Editor. The Block Editor sidebar lets editors override TOC settings per post without changing global defaults.
+Cr8vstacks Table of Contents supports headings created in the WordPress Block Editor and Elementor page builder. The Block Editor sidebar and Elementor Page Settings panel let editors override TOC settings per post/page (such as disabling the TOC) without changing global defaults.
 
-Per-post controls are also available in the Classic Editor meta box and Quick Edit. Manual placement is available through the Shortcode block with `[wptw_toc]`.
+Per-post controls are also available in the Classic Editor meta box and Quick Edit. Manual placement is available through the Shortcode block or Elementor shortcode widget with `[wptw_toc]`.
 
 = Design Controls =
 
@@ -103,6 +103,7 @@ No. The frontend script is written without jQuery.
 == Changelog ==
 
 = 1.3.0 =
+* Added Elementor Page Settings integration (on/off switcher to disable the TOC per post/page within the Elementor editor).
 * Added frontend alignment settings allowing users to align the Table of Contents card (Left, Center, Right) using block margins.
 * Fixed low-contrast scroll progress bars in Brutalist and Manuscript layouts by removing background-diluting color-mix logic that rendered them invisible on most presets.
 * Updated check and dot border contrast rules for Brutalist and Soft Editorial layouts, blending the borders with the active text color using CSS color-mix to guarantee legibility on both light and dark presets.

@@ -70,6 +70,7 @@ function wptw_defaults(): array {
         'toc_layout'            => 'manuscript',
         'position'              => 'before_first_heading',
         'default_state'         => 'open',
+        'alignment'             => 'center',
         'show_numbers'          => true,
         'smooth_scroll'         => true,
         'scroll_offset'         => 80,

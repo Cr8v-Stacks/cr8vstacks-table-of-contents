@@ -103,6 +103,7 @@ No. The frontend script is written without jQuery.
 == Changelog ==
 
 = 1.3.0 =
+* Added frontend alignment settings allowing users to align the Table of Contents card (Left, Center, Right) using block margins.
 * Fixed low-contrast scroll progress bars in Brutalist and Manuscript layouts by removing background-diluting color-mix logic that rendered them invisible on most presets.
 * Updated check and dot border contrast rules for Brutalist and Soft Editorial layouts, blending the borders with the active text color using CSS color-mix to guarantee legibility on both light and dark presets.
 * Fixed a layout clipping bug where the last list item inside expanded TOC cards got cut off at the bottom due to a hardcoded load-time pixel height calculation.

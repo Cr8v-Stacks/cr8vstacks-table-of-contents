@@ -288,6 +288,15 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     $font = wptw_font_stack( $o['font_family'] );
     $ls   = round( $o['letter_spacing_label'] / 100, 4 );
     $tog_border = $o['color_toggle_border'] ?? $o['color_toggle_bg'];
+
+    $alignment = $o['alignment'] ?? 'center';
+    if ( $alignment === 'left' ) {
+        $margin_rule = '2.75rem auto 2.25rem 0';
+    } elseif ( $alignment === 'right' ) {
+        $margin_rule = '2.75rem 0 2.25rem auto';
+    } else {
+        $margin_rule = '2.75rem auto 2.25rem';
+    }
     ob_start();
     ?>
     .wptw-toc {
@@ -333,7 +342,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         border:        1px solid var(--wptw-border);
         border-color:  color-mix(in srgb, var(--wptw-border) 72%, var(--wptw-link) 28%);
         border-radius: var(--wptw-radius);
-        margin:        2.75rem auto 2.25rem;
+        margin:        <?php echo esc_html( $margin_rule ); ?>;
         position:      relative;
         max-width:     820px;
     }

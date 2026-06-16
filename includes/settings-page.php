@@ -65,6 +65,8 @@ function wptw_sanitize_settings( $raw ): array {
     $clean['position']          = in_array( $raw['position'] ?? '', [ 'before_first_heading','after_first_paragraph','shortcode_only' ], true )
                                     ? $raw['position'] : 'before_first_heading';
     $clean['default_state']     = ( $raw['default_state'] ?? 'open' ) === 'closed' ? 'closed' : 'open';
+    $clean['alignment']         = in_array( $raw['alignment'] ?? 'center', [ 'left', 'center', 'right' ], true )
+                                    ? $raw['alignment'] : 'center';
     $clean['show_numbers']      = ! empty( $raw['show_numbers'] );
     $clean['smooth_scroll']     = ! empty( $raw['smooth_scroll'] );
     $clean['scroll_offset']     = wptw_clamp( $raw['scroll_offset']  ?? 80,  0, 500 );
@@ -335,6 +337,25 @@ function wptw_render_settings_page() {
                                 </label>
                             </div>
                             <p class="wptw-help">Can be overridden per post in the editor.</p>
+                        </div>
+
+                        <div class="wptw-field">
+                            <label class="wptw-label">TOC alignment</label>
+                            <div class="wptw-seg">
+                                <label class="wptw-segopt <?php echo ($o['alignment'] ?? 'center') === 'left' ? 'on' : ''; ?>">
+                                    <input type="radio" name="<?php echo esc_attr( WPTW_OPTION ); ?>[alignment]" value="left" <?php checked($o['alignment'] ?? 'center', 'left'); ?>>
+                                    Left
+                                </label>
+                                <label class="wptw-segopt <?php echo ($o['alignment'] ?? 'center') === 'center' ? 'on' : ''; ?>">
+                                    <input type="radio" name="<?php echo esc_attr( WPTW_OPTION ); ?>[alignment]" value="center" <?php checked($o['alignment'] ?? 'center', 'center'); ?>>
+                                    Center
+                                </label>
+                                <label class="wptw-segopt <?php echo ($o['alignment'] ?? 'center') === 'right' ? 'on' : ''; ?>">
+                                    <input type="radio" name="<?php echo esc_attr( WPTW_OPTION ); ?>[alignment]" value="right" <?php checked($o['alignment'] ?? 'center', 'right'); ?>>
+                                    Right
+                                </label>
+                            </div>
+                            <p class="wptw-help">Set the horizontal alignment of the TOC block on the page.</p>
                         </div>
 
                         <?php foreach ( [

@@ -143,3 +143,13 @@ No. The frontend script is written without jQuery.
 
 = 1.0.0 =
 * Initial release.
+
+== Screenshots ==
+
+1. Settings Dashboard - Visibility, Headings, and General Layout settings with Live Preview.
+2. Minimalist Layout - The classic clean card style TOC.
+3. Manuscript Layout - Dark editorial chapter style with timeline nodes, progress bar, and reading time.
+4. Soft Editorial Layout - Clean card layout with guided steps and completed section checkmarks.
+5. Brutalist Layout - Bold typographic layout with offset borders and high-contrast styling.
+6. Mobile Layout - Responsive rendering optimized for smaller viewports.
+7. Per-Post Controls - Gutenberg block editor sidebar for post-level overrides.

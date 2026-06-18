@@ -4,7 +4,7 @@ Cr8vstacks Table of Contents is a customizable WordPress table of contents plugi
 
 ## Repository
 
-- GitHub: https://github.com/Cr8v-Stacks/Tablewise
+- GitHub: https://github.com/Cr8v-Stacks/cr8vstacks-table-of-contents
 - Website: https://cr8vstacks.com/dev-playground/cr8vstacks-table-of-contents/
 - Support: cr8vstacks@gmail.com
 

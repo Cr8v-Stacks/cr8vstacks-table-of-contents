@@ -12,6 +12,8 @@ Customizable table of contents with layouts, live preview, active tracking, read
 
 == Description ==
 
+[Official Plugin Homepage & Demo](https://cr8vstacks.com/dev-playground/cr8vstacks-table-of-contents/)
+
 Cr8vstacks Table of Contents automatically generates a polished, accessible table of contents for WordPress posts and pages. It builds links from your headings, adds stable anchors where needed, and gives readers a clearer way to move through long-form content.
 
 The plugin includes four frontend layouts: Manuscript, Soft Editorial, Brutalist, and Minimalist. Each layout has its own header treatment, body structure, child-heading styling, reading progress style, and Hide/Show button design.

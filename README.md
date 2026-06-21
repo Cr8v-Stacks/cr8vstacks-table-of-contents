@@ -58,6 +58,7 @@ Cr8vstacks Table of Contents is designed so each layout can keep its own persona
 - Active heading tracking with read/done states.
 - Layout-specific Hide/Show controls with customizable text labels.
 - Option to display only the sticky TOC on mobile viewports (hides the normal inline card).
+- Option to enable the sticky TOC header only on mobile viewports (disables it on desktop).
 - Optional hierarchical section numbering.
 - Optional back-to-top floating button.
 

@@ -1614,6 +1614,7 @@ function wptw_frontend_scripts() {
         'anchorPrefix'    => sanitize_key( $o['anchor_prefix'] ),
         'stickyTop'       => (int)  $o['sticky_top_offset'],
         'readingWpm'      => (int)  $o['reading_wpm'],
+        'stickyMobileOnly'=> (bool) $o['sticky_mobile_only'],
         'labels'          => [
             'show' => esc_attr( $o['label_show'] ?: 'Show' ),
             'hide' => esc_attr( $o['label_hide'] ?: 'Hide' ),
@@ -1812,8 +1813,8 @@ function wptw_frontend_scripts() {
                     document.body.appendChild(stickyBar);
                     positionBar();
 
-                    /* Keep bar positioned on resize */
-                    window.addEventListener('resize', positionBar, { passive:true });
+                    /* Keep bar positioned and updated on resize */
+                    window.addEventListener('resize', checkSticky, { passive:true });
 
                     /* â”€â”€ Scroll-based sticky trigger (hybrid) â”€â”€
                      *
@@ -1829,6 +1830,9 @@ function wptw_frontend_scripts() {
                     function checkSticky() {
                         var headRect  = head.getBoundingClientRect();
                         var shouldShow = headRect.bottom < cfg.stickyTop;
+                        if (cfg.stickyMobileOnly && window.innerWidth > 600) {
+                            shouldShow = false;
+                        }
                         if (shouldShow !== isBarVisible) {
                             isBarVisible = shouldShow;
                             stickyBar.classList.toggle('is-visible', shouldShow);

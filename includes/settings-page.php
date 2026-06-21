@@ -80,6 +80,7 @@ function wptw_sanitize_settings( $raw ): array {
     $clean['label_show']         = sanitize_text_field( $raw['label_show'] ?? 'Show' ) ?: 'Show';
     $clean['label_hide']         = sanitize_text_field( $raw['label_hide'] ?? 'Hide' ) ?: 'Hide';
     $clean['mobile_sticky_only'] = ! empty( $raw['mobile_sticky_only'] );
+    $clean['sticky_mobile_only'] = ! empty( $raw['sticky_mobile_only'] );
 
     $color_keys = [
         'color_bg','color_border','color_header_bg',
@@ -432,6 +433,19 @@ function wptw_render_settings_page() {
                                 <div>
                                     <span class="wptw-swlabel">Show only sticky TOC on mobile</span>
                                     <p class="wptw-help">Hides the normal inline TOC card on mobile viewports (widths under 600px) but keeps the sticky TOC header working as the user scrolls.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wptw-field wptw-togfield">
+                            <div class="wptw-togrow">
+                                <label class="wptw-sw">
+                                    <input type="hidden" name="<?php echo esc_attr( WPTW_OPTION ); ?>[sticky_mobile_only]" value="0">
+                                    <input type="checkbox" name="<?php echo esc_attr( WPTW_OPTION ); ?>[sticky_mobile_only]" value="1" <?php checked(!empty($o['sticky_mobile_only']));?>>
+                                    <span class="wptw-swknob"></span>
+                                </label>
+                                <div>
+                                    <span class="wptw-swlabel">Sticky TOC on mobile only</span>
+                                    <p class="wptw-help">Disables the sticky header on desktop viewports, keeping it active only on mobile viewports (widths under 600px).</p>
                                 </div>
                             </div>
                         </div>

@@ -82,6 +82,7 @@ function wptw_defaults(): array {
         'label_show'            => 'Show',
         'label_hide'            => 'Hide',
         'mobile_sticky_only'    => false,
+        'sticky_mobile_only'    => false,
 
         /* Sticky header — implemented as fixed overlay, not CSS sticky */
         'sticky_header'         => true,

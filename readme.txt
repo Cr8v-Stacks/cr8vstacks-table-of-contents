@@ -8,7 +8,7 @@ Stable tag: 1.3.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Customizable table of contents with layouts, live preview, active tracking, reading time, sticky headers, and per-post controls.
+Free forever. High-contrast Table of Contents with custom layouts and a prominent sticky TOC header on scroll to keep navigation always accessible.
 
 == Description ==
 

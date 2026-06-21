@@ -1,6 +1,6 @@
 # Cr8vstacks Table of Contents
 
-Cr8vstacks Table of Contents is a customizable WordPress table of contents plugin for posts and pages. It turns page headings into a styled, accessible navigation block with multiple layouts, layout-aware color presets, live preview, reading progress, sticky behavior, and per-post controls.
+Cr8vstacks Table of Contents is a free forever, customizable WordPress table of contents plugin for posts and pages. It features a prominent sticky TOC header on scroll to keep navigation always accessible, alongside multiple layouts, layout-aware color presets, live preview, reading progress, and per-post controls.
 
 ## Repository
 

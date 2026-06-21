@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Cr8vstacks Table of Contents
  * Plugin URI:        https://cr8vstacks.com/dev-playground/cr8vstacks-table-of-contents/
- * Description:       A clean, minimal, and highly customizable Table of Contents plugin. Supports sticky headers, per-post overrides, active-section tracking, reading time estimates, and a full settings panel.
+ * Description:       A free forever, clean, and highly customizable Table of Contents plugin featuring a prominent sticky TOC header on scroll, per-post overrides, active section tracking, and multiple layouts.
  * Version:           1.3.0
  * Requires at least: 5.8
  * Tested up to:      7.0

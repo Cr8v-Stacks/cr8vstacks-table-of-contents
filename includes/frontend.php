@@ -1570,7 +1570,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-btt:hover { opacity:0.8; }
 
     /* â”€â”€ Mobile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-    @media (max-width:600px) {
+    @media (max-width:768px) {
         .wptw-toc                           { margin:1.5rem 0; }
         .wptw-toc__head                     { padding:9px 14px; }
         .wptw-toc__link                     { padding:7px 14px; }
@@ -1581,19 +1581,6 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         .wptw-sticky-bar                    { padding:9px 14px; }
         .wptw-btt                           { bottom:16px; right:16px; width:38px; height:38px; font-size:15px; }
     }
-
-    <?php if ( ! empty( $o['mobile_sticky_only'] ) ) : ?>
-    @media (max-width:600px) {
-        .wptw-toc {
-            display: none !important;
-        }
-        .wptw-sticky-bar {
-            opacity: 1 !important;
-            transform: none !important;
-            pointer-events: auto !important;
-        }
-    }
-    <?php endif; ?>
 
     <?php
     return (string) ob_get_clean();
@@ -1751,7 +1738,9 @@ function wptw_frontend_scripts() {
                         '--wptw-tog-bg','--wptw-tog-fg','--wptw-tog-bdr',
                         '--wptw-rtbar-fill','--wptw-rtbar-bg',
                         '--wptw-bg','--wptw-link-hov','--wptw-bar',
-                        '--wptw-font','--wptw-mono','--wptw-ease'
+                        '--wptw-font','--wptw-mono','--wptw-ease',
+                        '--wptw-link','--wptw-act-bg','--wptw-num-c',
+                        '--wptw-num-sz','--wptw-flink','--wptw-fsub'
                     ].forEach(function(v){
                         stickyBar.style.setProperty(v, tocStyle.getPropertyValue(v).trim());
                     });
@@ -1830,7 +1819,7 @@ function wptw_frontend_scripts() {
                     function checkSticky() {
                         var headRect  = head.getBoundingClientRect();
                         var shouldShow = headRect.bottom < cfg.stickyTop;
-                        if (cfg.stickyMobileOnly && window.innerWidth > 600) {
+                        if (cfg.stickyMobileOnly && window.innerWidth > 768) {
                             shouldShow = false;
                         }
                         if (shouldShow !== isBarVisible) {

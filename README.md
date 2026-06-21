@@ -57,8 +57,7 @@ Cr8vstacks Table of Contents is designed so each layout can keep its own persona
 - Sticky TOC header with configurable top offset for fixed site headers, featuring a built-in dropdown menu to access headings.
 - Active heading tracking with read/done states.
 - Layout-specific Hide/Show controls with customizable text labels.
-- Option to display only the sticky TOC on mobile viewports (hides the normal inline card).
-- Option to enable the sticky TOC header only on mobile viewports (disables it on desktop).
+- Option to enable the sticky TOC header only on mobile viewports (disables it on desktop screens larger than 768px).
 - Optional hierarchical section numbering.
 - Optional back-to-top floating button.
 

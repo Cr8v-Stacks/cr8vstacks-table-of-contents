@@ -4,8 +4,7 @@
 
 - Fixed sticky TOC Show/Hide button on scroll to toggle a dropdown menu containing the list of headings directly from the sticky header.
 - Added configurable text fields for customizing the "Show" and "Hide" toggle button labels.
-- Added an option to display only the sticky TOC on mobile viewports (hides the normal inline TOC card under 600px).
-- Added an option to enable the sticky TOC header only on mobile viewports (disables it on desktop).
+- Added an option to enable the sticky TOC header only on mobile viewports (disables it on desktop screens larger than 768px).
 - Added Elementor Page Settings integration (on/off switcher to disable the TOC per post/page within the Elementor editor).
 - Added frontend alignment settings allowing users to align the Table of Contents card (Left, Center, Right) using block margins.
 - Fixed low-contrast scroll progress bars in Brutalist (regular/sticky) and Manuscript (sticky) layouts by removing background-diluting `color-mix` logic that rendered them invisible on most presets.

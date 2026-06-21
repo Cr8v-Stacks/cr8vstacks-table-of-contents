@@ -77,6 +77,9 @@ function wptw_sanitize_settings( $raw ): array {
     $clean['reading_wpm']       = wptw_clamp( $raw['reading_wpm']    ?? 200, 50, 1000 );
     $clean['sticky_header']     = ! empty( $raw['sticky_header'] );
     $clean['sticky_top_offset'] = wptw_clamp( $raw['sticky_top_offset'] ?? 20, 0, 300 );
+    $clean['label_show']         = sanitize_text_field( $raw['label_show'] ?? 'Show' ) ?: 'Show';
+    $clean['label_hide']         = sanitize_text_field( $raw['label_hide'] ?? 'Hide' ) ?: 'Hide';
+    $clean['mobile_sticky_only'] = ! empty( $raw['mobile_sticky_only'] );
 
     $color_keys = [
         'color_bg','color_border','color_header_bg',
@@ -358,6 +361,17 @@ function wptw_render_settings_page() {
                             <p class="wptw-help">Set the horizontal alignment of the TOC block on the page.</p>
                         </div>
 
+                        <div class="wptw-field">
+                            <label class="wptw-label">Show button label</label>
+                            <input type="text" name="<?php echo esc_attr( WPTW_OPTION ); ?>[label_show]" value="<?php echo esc_attr($o['label_show']);?>" class="wptw-input">
+                            <p class="wptw-help">Custom text label for the "Show" toggle button.</p>
+                        </div>
+                        <div class="wptw-field">
+                            <label class="wptw-label">Hide button label</label>
+                            <input type="text" name="<?php echo esc_attr( WPTW_OPTION ); ?>[label_hide]" value="<?php echo esc_attr($o['label_hide']);?>" class="wptw-input">
+                            <p class="wptw-help">Custom text label for the "Hide" toggle button.</p>
+                        </div>
+
                         <?php foreach ( [
                             'show_numbers'     => [ 'Section numbers',         'Show 1. / 1.1. / 2. numbering beside each entry.' ],
                             'smooth_scroll'    => [ 'Smooth scroll',           'Animate page scroll when a TOC link is clicked.' ],
@@ -407,6 +421,19 @@ function wptw_render_settings_page() {
                             </div>
                             <input type="number" id="wptw-sticky-num" name="<?php echo esc_attr( WPTW_OPTION ); ?>[sticky_top_offset]" value="<?php echo esc_attr($o['sticky_top_offset']);?>" min="0" max="300" class="wptw-num" style="margin-top:6px">
                             <p class="wptw-help">Distance from viewport top when fixed. Set to your site's fixed navigation height.</p>
+                        </div>
+                        <div class="wptw-field wptw-togfield">
+                            <div class="wptw-togrow">
+                                <label class="wptw-sw">
+                                    <input type="hidden" name="<?php echo esc_attr( WPTW_OPTION ); ?>[mobile_sticky_only]" value="0">
+                                    <input type="checkbox" name="<?php echo esc_attr( WPTW_OPTION ); ?>[mobile_sticky_only]" value="1" <?php checked(!empty($o['mobile_sticky_only']));?>>
+                                    <span class="wptw-swknob"></span>
+                                </label>
+                                <div>
+                                    <span class="wptw-swlabel">Show only sticky TOC on mobile</span>
+                                    <p class="wptw-help">Hides the normal inline TOC card on mobile viewports (widths under 600px) but keeps the sticky TOC header working as the user scrolls.</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="wptw-field">
                             <label class="wptw-label">Smooth scroll offset (px)</label>

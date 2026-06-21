@@ -54,9 +54,10 @@ Cr8vstacks Table of Contents is designed so each layout can keep its own persona
 
 - Reading time estimate with configurable words-per-minute.
 - Scroll-based reading progress indicator that matches the active layout.
-- Sticky TOC header with configurable top offset for fixed site headers.
+- Sticky TOC header with configurable top offset for fixed site headers, featuring a built-in dropdown menu to access headings.
 - Active heading tracking with read/done states.
-- Layout-specific Hide/Show controls.
+- Layout-specific Hide/Show controls with customizable text labels.
+- Option to display only the sticky TOC on mobile viewports (hides the normal inline card).
 - Optional hierarchical section numbering.
 - Optional back-to-top floating button.
 

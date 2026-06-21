@@ -91,7 +91,9 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
     $brut_prog_html = $show_prog ? '<div class="wptw-toc__prog toc-brut-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="wptw-toc__prog-fill toc-brut-progress-fill"></div></div>' : '';
 
     $aria_exp   = $expanded ? 'true' : 'false';
-    $tog_label  = $expanded ? 'Hide' : 'Show';
+    $label_show = wptw_get( 'label_show' ) ?: 'Show';
+    $label_hide = wptw_get( 'label_hide' ) ?: 'Hide';
+    $tog_label  = $expanded ? $label_hide : $label_show;
     $list_style = $expanded ? '' : ' style="height:0;opacity:0;padding-top:0;padding-bottom:0;"';
     $sticky_cls = $sticky   ? ' wptw-toc--sticky' : '';
 
@@ -1526,6 +1528,23 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         flex:        1;
         min-width:   0;
     }
+    .wptw-sticky-bar__body {
+        position:      absolute !important;
+        top:           100% !important;
+        left:          -1px !important;
+        right:         -1px !important;
+        background:    var(--wptw-bg) !important;
+        border:        1px solid var(--wptw-border) !important;
+        border-top:    none !important;
+        border-radius: 0 0 var(--wptw-radius) var(--wptw-radius) !important;
+        box-shadow:    0 8px 24px rgba(0,0,0,0.15) !important;
+        max-height:    400px !important;
+        overflow-y:    auto !important;
+        display:       none;
+        padding:       12px 18px !important;
+        box-sizing:    border-box !important;
+        z-index:       9998 !important;
+    }
 
     /* â”€â”€ Back-to-top â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .wptw-btt {
@@ -1563,6 +1582,19 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         .wptw-btt                           { bottom:16px; right:16px; width:38px; height:38px; font-size:15px; }
     }
 
+    <?php if ( ! empty( $o['mobile_sticky_only'] ) ) : ?>
+    @media (max-width:600px) {
+        .wptw-toc {
+            display: none !important;
+        }
+        .wptw-sticky-bar {
+            opacity: 1 !important;
+            transform: none !important;
+            pointer-events: auto !important;
+        }
+    }
+    <?php endif; ?>
+
     <?php
     return (string) ob_get_clean();
 }
@@ -1582,6 +1614,10 @@ function wptw_frontend_scripts() {
         'anchorPrefix'    => sanitize_key( $o['anchor_prefix'] ),
         'stickyTop'       => (int)  $o['sticky_top_offset'],
         'readingWpm'      => (int)  $o['reading_wpm'],
+        'labels'          => [
+            'show' => esc_attr( $o['label_show'] ?: 'Show' ),
+            'hide' => esc_attr( $o['label_hide'] ?: 'Hide' ),
+        ],
     ];
     ob_start();
     ?>
@@ -1646,7 +1682,7 @@ function wptw_frontend_scripts() {
                                 list.style.paddingBottom= '0';
                             });
                             toggle.setAttribute('aria-expanded','false');
-                            if (ttext) ttext.textContent = 'Show';
+                            if (ttext) ttext.textContent = cfg.labels.show;
                             syncBarToggle(false);
                         } else {
                             list.style.paddingTop    = '';
@@ -1654,8 +1690,7 @@ function wptw_frontend_scripts() {
                             list.style.opacity = '1';
                             list.style.height  = list.scrollHeight + 'px';
                             toggle.setAttribute('aria-expanded','true');
-                            if (ttext) ttext.textContent = 'Hide';
-                            syncBarToggle(true);
+                            if (ttext) ttext.textContent = cfg.labels.hide;
                             list.addEventListener('transitionend', function rst(){
                                 list.style.height = 'auto';
                                 list.removeEventListener('transitionend',rst);
@@ -1664,7 +1699,7 @@ function wptw_frontend_scripts() {
                     });
                 }
 
-                /* â•â• STICKY BAR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                /* â• â•  STICKY BAR â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• 
                  *
                  * BEHAVIOUR:
                  *   When TOC is OPEN â†’ sticky triggers when the TOC HEADER
@@ -1732,10 +1767,46 @@ function wptw_frontend_scripts() {
                         barProgFill = barProg.querySelector('.wptw-toc__prog-fill');
                     }
 
-                    /* Wire bar's toggle â†’ real toggle */
+                    /* Clone body for sticky dropdown */
+                    var stickyBody = body.cloneNode(true);
+                    stickyBody.classList.add('wptw-sticky-bar__body');
+                    stickyBody.style.display = 'none';
+                    stickyBody.style.height = '';
+                    stickyBody.style.opacity = '';
+                    stickyBody.style.paddingTop = '';
+                    stickyBody.style.paddingBottom = '';
+                    stickyBar.appendChild(stickyBody);
+
                     var barToggle = stickyBar.querySelector('.wptw-toc__toggle');
-                    if (barToggle && toggle) {
-                        barToggle.addEventListener('click', function(){ toggle.click(); });
+                    if (barToggle) {
+                        barToggle.setAttribute('aria-expanded', 'false');
+                        barToggle.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            var isExpanded = barToggle.getAttribute('aria-expanded') === 'true';
+                            setStickyBodyExpanded(!isExpanded);
+                        });
+                    }
+
+                    stickyBody.querySelectorAll('a').forEach(function(link) {
+                        link.addEventListener('click', function() {
+                            setStickyBodyExpanded(false);
+                        });
+                    });
+
+                    function setStickyBodyExpanded(expanded) {
+                        if (!stickyBar) return;
+                        var bt = stickyBar.querySelector('.wptw-toc__tog-text');
+                        var si = stickyBar.querySelector('.wptw-toc__toggle');
+                        if (si) si.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                        if (bt) {
+                            bt.textContent = expanded ? cfg.labels.hide : cfg.labels.show;
+                        }
+                        var icon = si ? si.querySelector('.wptw-toc__tog-icon') : null;
+                        if (icon) icon.style.transform = expanded ? '' : 'rotate(-90deg)';
+                        
+                        if (stickyBody) {
+                            stickyBody.style.display = expanded ? 'block' : 'none';
+                        }
                     }
 
                     document.body.appendChild(stickyBar);
@@ -1761,6 +1832,9 @@ function wptw_frontend_scripts() {
                         if (shouldShow !== isBarVisible) {
                             isBarVisible = shouldShow;
                             stickyBar.classList.toggle('is-visible', shouldShow);
+                            if (!shouldShow) {
+                                setStickyBodyExpanded(false);
+                            }
                         }
                         positionBar();
                     }
@@ -1774,7 +1848,7 @@ function wptw_frontend_scripts() {
                     if (!stickyBar) return;
                     var bt = stickyBar.querySelector('.wptw-toc__tog-text');
                     var si = stickyBar.querySelector('.wptw-toc__toggle');
-                    if (bt) bt.textContent = isOpen ? 'Hide' : 'Show';
+                    if (bt) bt.textContent = isOpen ? cfg.labels.hide : cfg.labels.show;
                     if (si) si.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
                     /* also sync icon rotation */
                     var icon = si ? si.querySelector('.wptw-toc__tog-icon') : null;

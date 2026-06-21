@@ -79,6 +79,9 @@ function wptw_defaults(): array {
         'reading_time'          => true,
         'reading_progress'      => true,   // reading progress bar
         'reading_wpm'           => 200,
+        'label_show'            => 'Show',
+        'label_hide'            => 'Hide',
+        'mobile_sticky_only'    => false,
 
         /* Sticky header — implemented as fixed overlay, not CSS sticky */
         'sticky_header'         => true,

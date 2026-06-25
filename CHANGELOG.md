@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.1.2
+
+- Fixed sticky header TOC dropdown expansion visibility issues for Minimalist, Manuscript, and Soft Editorial layouts.
+- Fixed alignment centering issue for the Manuscript eyebrow title when the sticky bar is activated.
+- Added top margin clearance for the progress bar inside the Soft Editorial layout.
+- Replaced default WordPress admin settings-saved notice banners with a modern floating visual toast notification.
+
 ## 1.3.1.1
 
 - Fixed sticky header TOC dropdown expansion issue for standard non-Brutalist layouts by resetting cloned child inline styles.

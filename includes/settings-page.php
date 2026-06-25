@@ -568,7 +568,7 @@ function wptw_render_settings_page() {
 
                 <div class="wptw-footer">
                     <?php submit_button('Save settings','primary wptw-savebtn','submit',false); ?>
-                    <span id="wptw-saved" class="wptw-saved">✓ Saved</span>
+                    <span id="wptw-saved" class="wptw-saved"><span class="wptw-toast-icon">✓</span> Saved</span>
                 </div>
                 </div>
 

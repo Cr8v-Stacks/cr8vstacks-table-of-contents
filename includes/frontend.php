@@ -187,7 +187,7 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
         }
         $out .= '</ol></div>';
     } elseif ( $layout === 'manuscript' ) {
-        $out .= '<div class="toc-manuscript-eyebrow"><span class="wptw-toc__label">' . esc_html( $toc_title ) . '</span><span class="toc-ms-actions">' . $rt_html . $toggle . '</span></div>';
+        $out .= '<div class="toc-manuscript-eyebrow"><div class="wptw-toc__head-left"><span class="wptw-toc__label">' . esc_html( $toc_title ) . '</span></div><span class="toc-ms-actions">' . $rt_html . $toggle . '</span></div>';
         $out .= '<div class="wptw-toc__body"><ol class="wptw-toc__list toc-manuscript-list" id="' . esc_attr( $list_id ) . '" role="list"' . $list_style . '>';
         $roman = [ 'I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII' ];
         foreach ( $section_groups as $pos => $group ) {
@@ -654,7 +654,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         color: var(--wptw-link-hov);
     }
     .wptw-toc--layout-editorial .wptw-toc__prog {
-        margin: 0 24px 14px;
+        margin: 12px 24px 14px;
         border-radius: 3px;
     }
 
@@ -834,7 +834,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         font-size: var(--wptw-rt-sz);
     }
     .wptw-toc--layout-editorial .wptw-toc__prog {
-        margin: 0 24px 14px;
+        margin: 12px 24px 14px;
     }
 
     .wptw-toc--layout-brutalist {
@@ -1020,6 +1020,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         display: flex;
         gap: 10px;
         padding: 14px 24px;
+        margin-top: 12px;
     }
     .wptw-toc--layout-editorial .toc-ed-progress {
         background: var(--wptw-rtbar-bg);
@@ -1461,6 +1462,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         pointer-events:  none;
         font-family:     var(--wptw-font);
         box-sizing:      border-box;
+        overflow:        visible !important;
     }
     .wptw-sticky-bar.is-visible {
         opacity:        1;
@@ -1492,6 +1494,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-sticky-bar.wptw-toc--layout-editorial {
         background: var(--wptw-head-bg);
         border-color: var(--wptw-border);
+        padding: 18px 18px;
     }
     .wptw-sticky-bar.wptw-toc--layout-manuscript .wptw-toc__toggle,
     .wptw-sticky-bar.wptw-toc--layout-brutalist .wptw-toc__toggle {
@@ -1579,7 +1582,8 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         .wptw-toc__item--d4 .wptw-toc__link { padding-left:42px; }
         .wptw-toc--layout-editorial .wptw-toc__head { padding:18px 16px 14px; }
         .wptw-toc--layout-brutalist::after { inset:5px -6px -6px 5px; }
-        .wptw-sticky-bar                    { padding:9px 14px; }
+        .wptw-sticky-bar,
+        .wptw-sticky-bar.wptw-toc--layout-editorial { padding:17px 14px; }
         .wptw-btt                           { bottom:16px; right:16px; width:38px; height:38px; font-size:15px; }
     }
 
@@ -1746,7 +1750,10 @@ function wptw_frontend_scripts() {
                         '--wptw-link','--wptw-act-bg','--wptw-num-c',
                         '--wptw-num-sz','--wptw-flink','--wptw-fsub'
                     ].forEach(function(v){
-                        stickyBar.style.setProperty(v, tocStyle.getPropertyValue(v).trim());
+                        var val = tocStyle.getPropertyValue(v);
+                        if (val !== null && val !== undefined) {
+                            stickyBar.style.setProperty(v, val.trim());
+                        }
                     });
 
                     /* Clone header HTML */
@@ -1762,6 +1769,7 @@ function wptw_frontend_scripts() {
                     }
 
                     /* Clone body for sticky dropdown */
+                    if (!body) return;
                     var stickyBody = body.cloneNode(true);
                     stickyBody.classList.add('wptw-sticky-bar__body');
                     stickyBody.style.display = 'none';

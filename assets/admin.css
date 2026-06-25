@@ -105,8 +105,13 @@
     /* footer */
     .wptw-footer{margin-top:28px;padding:18px 30px;border-top:1px solid #eee;display:flex;align-items:center;gap:16px}
     .wptw-savebtn{font-size:13.5px!important;padding:8px 24px!important;height:auto!important}
-    .wptw-saved{color:#2e7d32;font-size:13px;font-weight:600;opacity:0;transition:opacity .3s}
-    .wptw-saved.on{opacity:1}
+    .wptw-saved{position:fixed;bottom:24px;right:24px;z-index:99999;display:flex;align-items:center;gap:10px;background:#0f172a;color:#fff;font-size:14px;font-weight:500;padding:12px 20px;border-radius:8px;box-shadow:0 10px 25px -5px rgba(0,0,0,.15),0 8px 10px -6px rgba(0,0,0,.15);border:1px solid #334155;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)}
+    .wptw-saved.on{opacity:1;transform:translateY(0);pointer-events:auto}
+    .wptw-toast-icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#10b981;color:#fff;border-radius:50%;font-size:11px;font-weight:700}
+    #wpbody-content > .notice:has(~ .wptw-wrap),
+    #wpbody-content > .settings-error:has(~ .wptw-wrap),
+    #wpbody-content > .updated:has(~ .wptw-wrap),
+    #wpbody-content > .error:has(~ .wptw-wrap) {display:none!important}
     .wptw-wrap{max-width:1460px}
     .wptw-layout{align-items:stretch}
     #wptw-form{flex:1;min-width:0}

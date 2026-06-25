@@ -4,7 +4,7 @@ Tags: table of contents, toc, gutenberg, reading time, seo
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.1.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,10 @@ It can help indirectly by creating crawlable anchor links and clearer on-page na
 No. The frontend script is written without jQuery.
 
 == Changelog ==
+
+= 1.3.1.1 =
+* Fixed sticky header TOC dropdown expansion issue for standard non-Brutalist layouts by resetting cloned child inline styles.
+* Localized scroll timer countdown strings ("min read", "min left", "Done") via the localized translation framework.
 
 = 1.3.1 =
 * Added an option to enable the sticky TOC header only on mobile viewports (disables it on desktop screens larger than 768px).

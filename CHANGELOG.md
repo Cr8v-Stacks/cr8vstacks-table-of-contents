@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1.1
+
+- Fixed sticky header TOC dropdown expansion issue for standard non-Brutalist layouts by resetting cloned child inline styles.
+- Localized scroll timer countdown strings ("min read", "min left", "Done") via the localized translation framework.
+
 ## 1.3.1
 
 - Added an option to enable the sticky TOC header only on mobile viewports (disables it on desktop screens larger than 768px).

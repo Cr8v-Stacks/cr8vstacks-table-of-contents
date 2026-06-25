@@ -78,7 +78,8 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
     $total_mins = wptw_reading_time( $content, (int) wptw_get('reading_wpm') );
     $rt_html = '';
     if ( $show_rt ) {
-        $rt_html = '<span class="wptw-toc__rt" data-total-mins="' . $total_mins . '">' . $total_mins . ' min&nbsp;read</span>';
+        $rt_text = sprintf( esc_html__( '%d min read', 'cr8vstacks-table-of-contents' ), $total_mins );
+        $rt_html = '<span class="wptw-toc__rt" data-total-mins="' . $total_mins . '">' . esc_html( $rt_text ) . '</span>';
     }
 
     /* Progress bar markup */
@@ -1605,6 +1606,9 @@ function wptw_frontend_scripts() {
         'labels'          => [
             'show' => esc_attr( $o['label_show'] ?: 'Show' ),
             'hide' => esc_attr( $o['label_hide'] ?: 'Hide' ),
+            'read' => esc_attr__( 'min read', 'cr8vstacks-table-of-contents' ),
+            'left' => esc_attr__( 'min left', 'cr8vstacks-table-of-contents' ),
+            'done' => esc_attr__( 'Done', 'cr8vstacks-table-of-contents' ),
         ],
     ];
     ob_start();
@@ -1765,6 +1769,13 @@ function wptw_frontend_scripts() {
                     stickyBody.style.opacity = '';
                     stickyBody.style.paddingTop = '';
                     stickyBody.style.paddingBottom = '';
+                    /* Reset inline styles on cloned children to prevent inherited collapsed state */
+                    stickyBody.querySelectorAll('.wptw-toc__list').forEach(function(el) {
+                        el.style.height = '';
+                        el.style.opacity = '';
+                        el.style.paddingTop = '';
+                        el.style.paddingBottom = '';
+                    });
                     stickyBar.appendChild(stickyBody);
 
                     var barToggle = stickyBar.querySelector('.wptw-toc__toggle');
@@ -1882,11 +1893,11 @@ function wptw_frontend_scripts() {
                             remaining = Math.max(0, remaining);
                             var label;
                             if (pctInt >= 98) {
-                                label = 'âœ“ Done';
+                                label = '✓ ' + cfg.labels.done;
                             } else if (pct < 0.02) {
-                                label = totalMins + ' min\u00a0read';
+                                label = totalMins + ' ' + cfg.labels.read;
                             } else {
-                                label = remaining + ' min\u00a0left';
+                                label = remaining + ' ' + cfg.labels.left;
                             }
                             /* Update in card */
                             if (rtSpan.textContent !== label) rtSpan.textContent = label;

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1.3
+
+- Prevented TOC elements from rendering inside mega menus, sidebars, widgets, or related post items by restricting content injection to the main singular query loop.
+
 ## 1.3.1.2
 
 - Fixed sticky header TOC dropdown expansion visibility issues for Minimalist, Manuscript, and Soft Editorial layouts.

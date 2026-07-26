@@ -6,6 +6,15 @@ add_filter( 'the_content', 'wptw_inject_toc', 999 );
 
 function wptw_inject_toc( string $content ): string {
     if ( ! is_singular() ) return $content;
+
+    global $wp_query;
+    if ( ! is_main_query() || ! in_the_loop() ) {
+        return $content;
+    }
+    if ( get_the_ID() !== $wp_query->get_queried_object_id() ) {
+        return $content;
+    }
+
     $post_id   = get_the_ID();
     $post_type = get_post_type( $post_id );
     $types     = (array) wptw_get( 'post_types' );

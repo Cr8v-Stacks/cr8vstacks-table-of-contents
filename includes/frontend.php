@@ -341,6 +341,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         --wptw-mono:        'DM Mono','Fira Mono','Courier New',monospace;
         --wptw-ease:        200ms cubic-bezier(0.4,0,0.2,1);
         --wptw-sticky-top:  <?php echo (int) $o['sticky_top_offset']; ?>px;
+        --wptw-sticky-z:    <?php echo (int) ( $o['sticky_z_index'] ?? 9999 ); ?>;
     }
 
     /* â”€â”€ Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -1456,7 +1457,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         position:        fixed;
         /* left/width set dynamically by JS to match card width */
         top:             0; /* overridden by JS with sticky_top offset */
-        z-index:         9999;
+        z-index:         var(--wptw-sticky-z, 9999);
         display:         flex;
         align-items:     center;
         justify-content: space-between;
@@ -1605,7 +1606,11 @@ add_action( 'wp_enqueue_scripts', 'wptw_frontend_scripts', 20 );
 
 function wptw_frontend_scripts() {
     if ( ! is_singular( (array) wptw_get('post_types') ) ) return;
-    $o   = wptw_get();
+    $o = wptw_get();
+    $post_id = get_the_ID();
+    $eff = fn( string $k ) => wptw_effective( $k, $post_id );
+    $eff_offset = ( $eff('sticky_top_offset') !== '' && $eff('sticky_top_offset') !== null ) ? (int) $eff('sticky_top_offset') : (int) $o['sticky_top_offset'];
+
     $cfg = [
         'smoothScroll'    => (bool) $o['smooth_scroll'],
         'scrollOffset'    => (int)  $o['scroll_offset'],
@@ -1613,7 +1618,9 @@ function wptw_frontend_scripts() {
         'backToTop'       => (bool) $o['back_to_top'],
         'readingProgress' => (bool) $o['reading_progress'],
         'anchorPrefix'    => sanitize_key( $o['anchor_prefix'] ),
-        'stickyTop'       => (int)  $o['sticky_top_offset'],
+        'stickyTop'       => $eff_offset,
+        'stickyZIndex'    => (int)  ( $o['sticky_z_index'] ?? 9999 ),
+        'headerSelector'  => sanitize_text_field( $o['sticky_header_selector'] ?? '' ),
         'readingWpm'      => (int)  $o['reading_wpm'],
         'stickyMobileOnly'=> (bool) $o['sticky_mobile_only'],
         'labels'          => [
@@ -1637,6 +1644,17 @@ function wptw_frontend_scripts() {
                 var barHeight = adminBar.offsetHeight || 0;
                 cfg.stickyTop += barHeight;
                 cfg.scrollOffset += barHeight;
+            }
+
+            /* Adjust offsets dynamically for custom header selector if present */
+            if (cfg.headerSelector) {
+                try {
+                    var customHeader = document.querySelector(cfg.headerSelector);
+                    if (customHeader) {
+                        var headHeight = customHeader.offsetHeight || 0;
+                        cfg.stickyTop += headHeight;
+                    }
+                } catch(e){}
             }
 
             /* â•â• Helper: get live rect of TOC card â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
@@ -1745,6 +1763,9 @@ function wptw_frontend_scripts() {
                         if (cls.indexOf('wptw-toc--layout-') === 0) stickyBar.classList.add(cls);
                     });
                     stickyBar.style.top = cfg.stickyTop + 'px';
+                    if (cfg.stickyZIndex) {
+                        stickyBar.style.zIndex = cfg.stickyZIndex;
+                    }
 
                     /* Inherit CSS custom properties from toc element */
                     var tocStyle = window.getComputedStyle(toc);

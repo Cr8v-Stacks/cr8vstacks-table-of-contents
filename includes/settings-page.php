@@ -76,10 +76,12 @@ function wptw_sanitize_settings( $raw ): array {
     $clean['reading_progress']  = ! empty( $raw['reading_progress'] );
     $clean['reading_wpm']       = wptw_clamp( $raw['reading_wpm']    ?? 200, 50, 1000 );
     $clean['sticky_header']     = ! empty( $raw['sticky_header'] );
-    $clean['sticky_top_offset'] = wptw_clamp( $raw['sticky_top_offset'] ?? 20, 0, 300 );
-    $clean['label_show']         = sanitize_text_field( $raw['label_show'] ?? 'Show' ) ?: 'Show';
-    $clean['label_hide']         = sanitize_text_field( $raw['label_hide'] ?? 'Hide' ) ?: 'Hide';
-    $clean['sticky_mobile_only'] = ! empty( $raw['sticky_mobile_only'] );
+    $clean['sticky_top_offset']     = wptw_clamp( $raw['sticky_top_offset'] ?? 20, 0, 300 );
+    $clean['sticky_z_index']        = wptw_clamp( $raw['sticky_z_index'] ?? 9999, 0, 99999 );
+    $clean['sticky_header_selector']= sanitize_text_field( $raw['sticky_header_selector'] ?? '' );
+    $clean['label_show']            = sanitize_text_field( $raw['label_show'] ?? 'Show' ) ?: 'Show';
+    $clean['label_hide']            = sanitize_text_field( $raw['label_hide'] ?? 'Hide' ) ?: 'Hide';
+    $clean['sticky_mobile_only']    = ! empty( $raw['sticky_mobile_only'] );
 
     $color_keys = [
         'color_bg','color_border','color_header_bg',
@@ -421,6 +423,16 @@ function wptw_render_settings_page() {
                             </div>
                             <input type="number" id="wptw-sticky-num" name="<?php echo esc_attr( WPTW_OPTION ); ?>[sticky_top_offset]" value="<?php echo esc_attr($o['sticky_top_offset']);?>" min="0" max="300" class="wptw-num" style="margin-top:6px">
                             <p class="wptw-help">Distance from viewport top when fixed. Set to your site's fixed navigation height.</p>
+                        </div>
+                        <div class="wptw-field wptw-stickyex">
+                            <label class="wptw-label">Sticky Z-Index</label>
+                            <input type="number" name="<?php echo esc_attr( WPTW_OPTION ); ?>[sticky_z_index]" value="<?php echo esc_attr($o['sticky_z_index'] ?? 9999);?>" min="0" max="99999" class="wptw-num">
+                            <p class="wptw-help">Stacking layer order. Default is 9999. Lower it (e.g. 990) if your site menu dropdowns layer underneath it.</p>
+                        </div>
+                        <div class="wptw-field wptw-stickyex">
+                            <label class="wptw-label">Sticky Header Selector (Optional)</label>
+                            <input type="text" name="<?php echo esc_attr( WPTW_OPTION ); ?>[sticky_header_selector]" value="<?php echo esc_attr($o['sticky_header_selector'] ?? '');?>" placeholder="e.g. .c8bm-header or #site-header" class="regular-text" style="max-width:280px">
+                            <p class="wptw-help">CSS selector of your sticky site header. If provided, its height will be dynamically added to the top offset.</p>
                         </div>
                         <div class="wptw-field wptw-togfield">
                             <div class="wptw-togrow">

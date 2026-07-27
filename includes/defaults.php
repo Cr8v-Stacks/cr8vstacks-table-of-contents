@@ -86,6 +86,8 @@ function wptw_defaults(): array {
         /* Sticky header — implemented as fixed overlay, not CSS sticky */
         'sticky_header'         => true,
         'sticky_top_offset'     => 20,
+        'sticky_z_index'        => 9999,
+        'sticky_header_selector'=> '',
 
         /* Colours — TOC card */
         'color_bg'              => '#0f172a',

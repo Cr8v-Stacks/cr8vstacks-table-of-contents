@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.1.4
+
+- Added per-post sticky top offset override control in Block Editor sidebar and Classic meta box.
+- Added configurable Sticky Z-Index setting to resolve layer stacking conflicts with site mega menus.
+- Added optional Sticky Header Selector setting for automatic dynamic site header height calculation.
+
 ## 1.3.1.3
 
 - Prevented TOC elements from rendering inside mega menus, sidebars, widgets, or related post items by restricting content injection to the main singular query loop.

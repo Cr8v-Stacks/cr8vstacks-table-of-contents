@@ -97,17 +97,23 @@ function wptw_render_meta_box( WP_Post $post ) {
             <div class="wptw-meta-field">
                 <label class="wptw-meta-label" for="wptw-meta-sticky">Sticky TOC header</label>
                 <select name="wptw_meta[sticky_header]" id="wptw-meta-sticky" class="wptw-meta-select">
-                    <option value="" <?php selected( $meta['sticky_header'] ?? '', '' ); ?>>â€” Use global setting</option>
+                    <option value="" <?php selected( $meta['sticky_header'] ?? '', '' ); ?>>— Use global setting</option>
                     <option value="1" <?php selected( $meta['sticky_header'] ?? '', '1' ); ?>>Enabled</option>
                     <option value="0" <?php selected( $meta['sticky_header'] ?? '', '0' ); ?>>Disabled</option>
                 </select>
+            </div>
+
+            <!-- Sticky top offset override -->
+            <div class="wptw-meta-field">
+                <label class="wptw-meta-label" for="wptw-meta-sticky-offset">Sticky top offset (px)</label>
+                <input type="number" name="wptw_meta[sticky_top_offset]" id="wptw-meta-sticky-offset" value="<?php echo esc_attr( $meta['sticky_top_offset'] ?? '' ); ?>" min="0" max="300" placeholder="<?php echo esc_attr( $g['sticky_top_offset'] ); ?>" class="wptw-meta-select" style="width:100px">
             </div>
 
             <!-- Reading time override -->
             <div class="wptw-meta-field">
                 <label class="wptw-meta-label" for="wptw-meta-rt">Reading time</label>
                 <select name="wptw_meta[reading_time]" id="wptw-meta-rt" class="wptw-meta-select">
-                    <option value="" <?php selected( $meta['reading_time'] ?? '', '' ); ?>>â€” Use global setting</option>
+                    <option value="" <?php selected( $meta['reading_time'] ?? '', '' ); ?>>— Use global setting</option>
                     <option value="1" <?php selected( $meta['reading_time'] ?? '', '1' ); ?>>Show</option>
                     <option value="0" <?php selected( $meta['reading_time'] ?? '', '0' ); ?>>Hide</option>
                 </select>
@@ -133,9 +139,10 @@ add_action( 'save_post', function ( $post_id ) {
     $clean['default_state'] = in_array( $raw['default_state'] ?? '', [ 'open','closed','' ], true ) ? $raw['default_state'] : '';
     $clean['position']      = in_array( $raw['position'] ?? '', [ 'before_first_heading','after_first_paragraph','shortcode_only','' ], true ) ? $raw['position'] : '';
     $clean['toc_title']     = sanitize_text_field( $raw['toc_title'] ?? '' );
-    $clean['show_numbers']  = in_array( $raw['show_numbers'] ?? '', [ '0','1','' ], true ) ? $raw['show_numbers'] : '';
-    $clean['sticky_header'] = in_array( $raw['sticky_header'] ?? '', [ '0','1','' ], true ) ? $raw['sticky_header'] : '';
-    $clean['reading_time']  = in_array( $raw['reading_time'] ?? '', [ '0','1','' ], true ) ? $raw['reading_time'] : '';
+    $clean['show_numbers']      = in_array( $raw['show_numbers'] ?? '', [ '0','1','' ], true ) ? $raw['show_numbers'] : '';
+    $clean['sticky_header']     = in_array( $raw['sticky_header'] ?? '', [ '0','1','' ], true ) ? $raw['sticky_header'] : '';
+    $clean['sticky_top_offset'] = ( isset($raw['sticky_top_offset']) && $raw['sticky_top_offset'] !== '' ) ? (string) wptw_clamp( $raw['sticky_top_offset'], 0, 300 ) : '';
+    $clean['reading_time']      = in_array( $raw['reading_time'] ?? '', [ '0','1','' ], true ) ? $raw['reading_time'] : '';
 
     update_post_meta( $post_id, WPTW_META, $clean );
 } );
@@ -156,9 +163,10 @@ function wptw_register_post_meta(): void {
                         'default_state' => [ 'type' => 'string' ],
                         'position'      => [ 'type' => 'string' ],
                         'toc_title'     => [ 'type' => 'string' ],
-                        'show_numbers'  => [ 'type' => 'string' ],
-                        'sticky_header' => [ 'type' => 'string' ],
-                        'reading_time'  => [ 'type' => 'string' ],
+                        'show_numbers'      => [ 'type' => 'string' ],
+                        'sticky_header'     => [ 'type' => 'string' ],
+                        'sticky_top_offset' => [ 'type' => 'string' ],
+                        'reading_time'      => [ 'type' => 'string' ],
                     ],
                 ],
             ],
@@ -290,6 +298,15 @@ function wptw_gutenberg_sidebar_js( array $meta, array $g ): string {
                             { value: '0', label: __('Disabled', 'cr8vstacks-table-of-contents') },
                         ],
                         onChange: function(v){ setMeta('sticky_header', v); }
+                    }),
+
+                    el(TextControl, {
+                        label: __('Sticky top offset (px)', 'cr8vstacks-table-of-contents'),
+                        value: meta.sticky_top_offset !== undefined ? String(meta.sticky_top_offset) : '',
+                        placeholder: '<?php echo esc_js( $g['sticky_top_offset'] ); ?>',
+                        type: 'number',
+                        onChange: function(v){ setMeta('sticky_top_offset', v); },
+                        help: __('Leave blank to use global offset.', 'cr8vstacks-table-of-contents')
                     }),
 
                     el(SelectControl, {

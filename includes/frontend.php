@@ -359,26 +359,50 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         position:      relative;
         max-width:     820px;
     }
+    .wptw-toc-wrapper,
     .wptw-toc,
-    .wptw-toc * {
-        box-sizing: border-box;
+    .wptw-sticky-bar {
+        box-sizing: border-box !important;
+    }
+    .wptw-toc *,
+    .wptw-sticky-bar * {
+        box-sizing: border-box !important;
     }
     .wptw-toc ol,
     .wptw-toc ul,
     .wptw-toc li,
-    .wptw-toc p {
+    .wptw-toc p,
+    .wptw-sticky-bar ol,
+    .wptw-sticky-bar ul,
+    .wptw-sticky-bar li,
+    .wptw-sticky-bar p {
         margin: 0 !important;
         padding-block: 0;
     }
     .wptw-toc ol,
-    .wptw-toc ul {
+    .wptw-toc ul,
+    .wptw-sticky-bar ol,
+    .wptw-sticky-bar ul {
         list-style: none !important;
         padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+    .wptw-toc li,
+    .wptw-sticky-bar li {
+        list-style: none !important;
+        margin: 0 !important;
+        font-size: inherit;
+        line-height: normal;
     }
     .wptw-toc a,
     .wptw-toc a:visited,
     .wptw-toc a:hover,
-    .wptw-toc a:focus {
+    .wptw-toc a:focus,
+    .wptw-sticky-bar a,
+    .wptw-sticky-bar a:visited,
+    .wptw-sticky-bar a:hover,
+    .wptw-sticky-bar a:focus {
+        border-bottom: none !important;
         box-shadow: none !important;
         text-decoration: none !important;
     }
@@ -388,7 +412,8 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         outline: 2px solid var(--wptw-bar, currentColor) !important;
         outline-offset: 1px !important;
     }
-    .wptw-toc button {
+    .wptw-toc button,
+    .wptw-sticky-bar button {
         appearance: none;
         box-shadow: none !important;
         min-height: 0;

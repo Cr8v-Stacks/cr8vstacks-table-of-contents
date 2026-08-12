@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1.5
+
+- Hardened CSS reset rules for .wptw-toc, .wptw-toc-wrapper, and .wptw-sticky-bar elements to prevent aggressive theme style leakage.
+
 ## 1.3.1.4
 
 - Added per-post sticky top offset override control in Block Editor sidebar and Classic meta box.

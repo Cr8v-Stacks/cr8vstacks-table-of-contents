@@ -364,10 +364,15 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-sticky-bar {
         box-sizing: border-box !important;
     }
+    .wptw-toc-wrapper *,
     .wptw-toc *,
     .wptw-sticky-bar * {
         box-sizing: border-box !important;
     }
+    .wptw-toc-wrapper .wptw-toc ol,
+    .wptw-toc-wrapper .wptw-toc ul,
+    .wptw-toc-wrapper .wptw-toc li,
+    .wptw-toc-wrapper .wptw-toc p,
     .wptw-toc ol,
     .wptw-toc ul,
     .wptw-toc li,
@@ -377,8 +382,11 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-sticky-bar li,
     .wptw-sticky-bar p {
         margin: 0 !important;
+        margin-left: 0 !important;
         padding-block: 0;
     }
+    .wptw-toc-wrapper .wptw-toc ol,
+    .wptw-toc-wrapper .wptw-toc ul,
     .wptw-toc ol,
     .wptw-toc ul,
     .wptw-sticky-bar ol,
@@ -387,13 +395,20 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         padding-left: 0 !important;
         margin-left: 0 !important;
     }
+    .wptw-toc-wrapper .wptw-toc li,
     .wptw-toc li,
     .wptw-sticky-bar li {
         list-style: none !important;
         margin: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 0;
         font-size: inherit;
         line-height: normal;
     }
+    .wptw-toc-wrapper .wptw-toc a,
+    .wptw-toc-wrapper .wptw-toc a:visited,
+    .wptw-toc-wrapper .wptw-toc a:hover,
+    .wptw-toc-wrapper .wptw-toc a:focus,
     .wptw-toc a,
     .wptw-toc a:visited,
     .wptw-toc a:hover,
@@ -404,6 +419,18 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-sticky-bar a:focus {
         border-bottom: none !important;
         box-shadow: none !important;
+        text-decoration: none !important;
+    }
+    .wptw-toc-wrapper .wptw-toc .toc-ed-title,
+    .wptw-toc-wrapper .wptw-toc .toc-ed-main,
+    .wptw-toc-wrapper .wptw-toc .toc-ed-sub-link,
+    .wptw-toc-wrapper .wptw-toc .toc-ms-title,
+    .wptw-toc-wrapper .wptw-toc .toc-ms-main,
+    .wptw-toc-wrapper .wptw-toc .toc-ms-sub-link,
+    .wptw-toc-wrapper .wptw-toc .toc-brut-name,
+    .wptw-toc-wrapper .wptw-toc .toc-brut-main,
+    .wptw-toc-wrapper .wptw-toc .wptw-toc__link {
+        border-bottom: 0 !important;
         text-decoration: none !important;
     }
     .wptw-toc a:focus-visible,

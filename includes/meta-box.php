@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-/* â”€â”€â”€ Register meta box â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Register meta box ------------------------------------- */
 add_action( 'add_meta_boxes', function () {
     $post_types = (array) wptw_get( 'post_types' );
     foreach ( $post_types as $pt ) {
@@ -27,7 +27,7 @@ add_action( 'admin_enqueue_scripts', function ( $hook ) {
     wp_enqueue_script( 'wptw-meta-box', WPTW_URL . 'assets/meta-box.js', [], WPTW_VERSION, true );
 } );
 
-/* â”€â”€â”€ Render meta box â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Render meta box --------------------------------------- */
 function wptw_render_meta_box( WP_Post $post ) {
     $meta  = wptw_post_meta( $post->ID );
     $g     = wptw_get();
@@ -55,7 +55,7 @@ function wptw_render_meta_box( WP_Post $post ) {
                 <label class="wptw-meta-label" for="wptw-meta-state">Initial TOC state</label>
                 <select name="wptw_meta[default_state]" id="wptw-meta-state" class="wptw-meta-select">
                     <option value="" <?php selected( $meta['default_state'] ?? '', '' ); ?>>
-                        â€” Use global setting (<?php echo esc_html( $g['default_state'] ); ?>)
+                        -- Use global setting (<?php echo esc_html( $g['default_state'] ); ?>)
                     </option>
                     <option value="open"   <?php selected( $meta['default_state'] ?? '', 'open'   ); ?>>Open</option>
                     <option value="closed" <?php selected( $meta['default_state'] ?? '', 'closed' ); ?>>Closed</option>
@@ -66,10 +66,10 @@ function wptw_render_meta_box( WP_Post $post ) {
             <div class="wptw-meta-field">
                 <label class="wptw-meta-label" for="wptw-meta-pos">TOC position</label>
                 <select name="wptw_meta[position]" id="wptw-meta-pos" class="wptw-meta-select">
-                    <option value="" <?php selected( $meta['position'] ?? '', '' ); ?>>â€” Use global setting</option>
+                    <option value="" <?php selected( $meta['position'] ?? '', '' ); ?>>-- Use global setting</option>
                     <option value="before_first_heading"  <?php selected( $meta['position'] ?? '', 'before_first_heading'  ); ?>>Before first heading</option>
                     <option value="after_first_paragraph" <?php selected( $meta['position'] ?? '', 'after_first_paragraph' ); ?>>After first paragraph</option>
-                    <option value="shortcode_only"        <?php selected( $meta['position'] ?? '', 'shortcode_only'        ); ?>>Manual â€” shortcode only</option>
+                    <option value="shortcode_only"        <?php selected( $meta['position'] ?? '', 'shortcode_only'        ); ?>>Manual -- shortcode only</option>
                 </select>
             </div>
 
@@ -87,7 +87,7 @@ function wptw_render_meta_box( WP_Post $post ) {
             <div class="wptw-meta-field">
                 <label class="wptw-meta-label" for="wptw-meta-nums">Section numbers</label>
                 <select name="wptw_meta[show_numbers]" id="wptw-meta-nums" class="wptw-meta-select">
-                    <option value="" <?php selected( $meta['show_numbers'] ?? '', '' ); ?>>â€” Use global setting</option>
+                    <option value="" <?php selected( $meta['show_numbers'] ?? '', '' ); ?>>-- Use global setting</option>
                     <option value="1" <?php selected( $meta['show_numbers'] ?? '', '1' ); ?>>Show numbers</option>
                     <option value="0" <?php selected( $meta['show_numbers'] ?? '', '0' ); ?>>Hide numbers</option>
                 </select>
@@ -125,7 +125,7 @@ function wptw_render_meta_box( WP_Post $post ) {
     <?php
 }
 
-/* â”€â”€â”€ Save meta box â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Save meta box ----------------------------------------- */
 add_action( 'save_post', function ( $post_id ) {
     if ( ! isset( $_POST['wptw_meta_nonce'] ) ) return;
     if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wptw_meta_nonce'] ) ), 'wptw_meta_save' ) ) return;
@@ -147,7 +147,7 @@ add_action( 'save_post', function ( $post_id ) {
     update_post_meta( $post_id, WPTW_META, $clean );
 } );
 
-/* â”€â”€â”€ Gutenberg sidebar panel via REST + block editor sidebar â”€ */
+/* --- Gutenberg sidebar panel via REST + block editor sidebar - */
 add_action( 'init', 'wptw_register_post_meta' );
 function wptw_register_post_meta(): void {
     $types = array_unique( array_filter( array_merge( [ 'post', 'page' ], (array) wptw_get( 'post_types' ) ) ) );

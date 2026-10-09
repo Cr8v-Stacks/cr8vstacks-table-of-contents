@@ -1,3 +1,8 @@
+## 1.3.1.6
+
+- Fixed: the back-to-top button showed garbled characters on some sites because the arrow was stored double-encoded. It now uses an HTML entity.
+- Cleaned: double-encoded characters in comments and the stylesheet banner removed.
+
 # Changelog
 
 ## 1.3.1.5

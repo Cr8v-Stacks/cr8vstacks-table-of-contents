@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-/* â”€â”€â”€ Content filter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Content filter ---------------------------------------- */
 add_filter( 'the_content', 'wptw_inject_toc', 999 );
 
 function wptw_inject_toc( string $content ): string {
@@ -54,7 +54,7 @@ function wptw_inject_toc( string $content ): string {
     return $toc . $content;
 }
 
-/* â”€â”€â”€ Build TOC HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Build TOC HTML ---------------------------------------- */
 function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
     $levels = (array) wptw_get( 'heading_levels' );
     if ( empty( $levels ) ) return null;
@@ -83,7 +83,7 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
     $list_id   = 'wptw-list' . $pid_sfx;
     $toc_id    = 'wptw-toc' . $pid_sfx;
 
-    /* Reading time â€” stored in data attr so JS can count down */
+    /* Reading time -- stored in data attr so JS can count down */
     $total_mins = wptw_reading_time( $content, (int) wptw_get('reading_wpm') );
     $rt_html = '';
     if ( $show_rt ) {
@@ -109,10 +109,10 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
 
     /*
      * HTML structure:
-     *   .wptw-toc                â€” outer card
-     *     .wptw-toc__head        â€” header bar (source of truth for sticky clone)
-     *     .wptw-toc__prog        â€” progress bar (also cloned into sticky bar)
-     *     .wptw-toc__body        â€” overflow:hidden collapse region
+     *   .wptw-toc                -- outer card
+     *     .wptw-toc__head        -- header bar (source of truth for sticky clone)
+     *     .wptw-toc__prog        -- progress bar (also cloned into sticky bar)
+     *     .wptw-toc__body        -- overflow:hidden collapse region
      *       ol.wptw-toc__list
      */
     $counters  = [ 0, 0, 0, 0, 0 ];
@@ -270,21 +270,21 @@ function wptw_build_toc( string &$content, int $post_id = 0 ): ?string {
 
     static $btt_done = false;
     if ( ! $btt_done && (bool) wptw_get('back_to_top') ) {
-        $out     .= '<button type="button" class="wptw-btt" aria-label="' . esc_attr__('Back to contents','cr8vstacks-table-of-contents') . '" hidden>â†‘</button>';
+        $out     .= '<button type="button" class="wptw-btt" aria-label="' . esc_attr__('Back to contents','cr8vstacks-table-of-contents') . '" hidden>&#8593;</button>';
         $btt_done = true;
     }
 
     return $out;
 }
 
-/* â”€â”€â”€ Google Font â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Google Font ------------------------------------------- */
 add_action( 'wp_enqueue_scripts', function () {
     if ( ! is_singular( (array) wptw_get('post_types') ) ) return;
     $url = wptw_google_font_url( wptw_get('font_family') );
     if ( $url ) wp_enqueue_style( 'wptw-font', $url, [], WPTW_VERSION );
 } );
 
-/* â”€â”€â”€ Frontend styles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Frontend styles --------------------------------------- */
 add_action( 'wp_enqueue_scripts', 'wptw_frontend_styles', 20 );
 
 function wptw_frontend_styles() {
@@ -344,7 +344,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         --wptw-sticky-z:    <?php echo (int) ( $o['sticky_z_index'] ?? 9999 ); ?>;
     }
 
-    /* â”€â”€ Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- Card --------------------------------------- */
     .wptw-toc-wrapper {
         clear:         both;
         display:       flow-root;
@@ -446,7 +446,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         min-height: 0;
     }
 
-    /* â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- Header ------------------------------------- */
     .wptw-toc__head {
         display:         flex !important;
         align-items:     center;
@@ -466,7 +466,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         min-width:   0;
     }
 
-    /* â”€â”€ .wptw-toc__label â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- .wptw-toc__label ---------------------------- */
     .wptw-toc__label {
         font-family:    var(--wptw-mono);
         font-size:      var(--wptw-label-sz);
@@ -477,7 +477,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         white-space:    nowrap;
     }
 
-    /* â”€â”€ .wptw-toc__rt (reading time + countdown) â”€â”€â”€ */
+    /* -- .wptw-toc__rt (reading time + countdown) --- */
     .wptw-toc__rt {
         font-family: var(--wptw-mono);
         font-size:   var(--wptw-rt-sz);
@@ -488,7 +488,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         transition:   color 0.3s ease;
     }
 
-    /* â”€â”€ Progress bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- Progress bar ------------------------------- */
     .wptw-toc__prog {
         height:     3px;
         background: var(--wptw-rtbar-bg);
@@ -504,7 +504,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         transition: width 120ms linear;
     }
 
-    /* â”€â”€ .wptw-toc__toggle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- .wptw-toc__toggle -------------------------- */
     .wptw-toc__toggle {
         display:        flex;
         align-items:    center;
@@ -529,13 +529,13 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-toc__tog-icon { transition: transform var(--wptw-ease); flex-shrink:0; }
     .wptw-toc__toggle[aria-expanded="false"] .wptw-toc__tog-icon { transform: rotate(-90deg); }
 
-    /* â”€â”€ Body â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- Body --------------------------------------- */
     .wptw-toc__body {
         overflow:      hidden;
         border-radius: 0 0 var(--wptw-radius) var(--wptw-radius);
     }
 
-    /* â”€â”€ List â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- List --------------------------------------- */
     .wptw-toc__list {
         list-style: none;
         margin:     0;
@@ -543,7 +543,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         transition: height var(--wptw-ease), opacity var(--wptw-ease), padding var(--wptw-ease);
     }
 
-    /* â”€â”€ Item animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- Item animations ---------------------------- */
     .wptw-toc__item {
         opacity:         0;
         transform:       translateY(5px);
@@ -557,7 +557,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-toc__item--d5 .wptw-toc__link { padding-left: 72px; }
     .wptw-toc__item--d6 .wptw-toc__link { padding-left: 90px; }
 
-    /* â”€â”€ .wptw-toc__link â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- .wptw-toc__link ---------------------------- */
     .wptw-toc__link {
         display:         flex;
         align-items:     baseline;
@@ -584,7 +584,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     }
     .wptw-toc__item.is-active .wptw-toc__num { color: var(--wptw-bar); }
 
-    /* â”€â”€ .wptw-toc__num â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- .wptw-toc__num ----------------------------- */
     .wptw-toc__num {
         font-family: var(--wptw-mono);
         font-size:   var(--wptw-num-sz);
@@ -1202,11 +1202,11 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         background: var(--wptw-rtbar-fill);
     }
 
-    /* â•â•â• STICKY BAR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* === STICKY BAR ===========================================
      * Fixed-position clone of the TOC header.
-     * Matches the TOC card width and position â€” not full viewport.
+     * Matches the TOC card width and position -- not full viewport.
      * JS sets left/width to mirror the card's getBoundingClientRect().
-     * â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+     * ========================================================== */
     /* Final Manuscript rules: keep frontend and admin preview on one source of truth. */
     .wptw-toc--layout-manuscript {
         --wptw-ms-accent: var(--wptw-bar, #d97706);
@@ -1612,7 +1612,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
         z-index:       9998 !important;
     }
 
-    /* â”€â”€ Back-to-top â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- Back-to-top -------------------------------- */
     .wptw-btt {
         position:      fixed;
         bottom:        28px;
@@ -1635,7 +1635,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     .wptw-btt.is-visible { opacity:1; transform:none; }
     .wptw-btt:hover { opacity:0.8; }
 
-    /* â”€â”€ Mobile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    /* -- Mobile ------------------------------------- */
     @media (max-width:768px) {
         .wptw-toc                           { margin:1.5rem 0; }
         .wptw-toc__head                     { padding:9px 14px; }
@@ -1653,7 +1653,7 @@ function wptw_render_toc_styles( ?array $settings = null ): string {
     return (string) ob_get_clean();
 }
 
-/* â”€â”€â”€ Frontend scripts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Frontend scripts -------------------------------------- */
 add_action( 'wp_enqueue_scripts', 'wptw_frontend_scripts', 20 );
 
 function wptw_frontend_scripts() {
@@ -1709,12 +1709,12 @@ function wptw_frontend_scripts() {
                 } catch(e){}
             }
 
-            /* â•â• Helper: get live rect of TOC card â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+            /* == Helper: get live rect of TOC card ================== */
             function getCardRect(toc) {
                 return toc.getBoundingClientRect();
             }
 
-            /* â•â• Per TOC â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+            /* == Per TOC ============================================ */
             document.querySelectorAll('.wptw-toc').forEach(function(toc){
                 var head     = toc.querySelector('.wptw-toc__head') || toc.querySelector('.toc-manuscript-eyebrow');
                 var body     = toc.querySelector('.wptw-toc__body');
@@ -1744,7 +1744,7 @@ function wptw_frontend_scripts() {
                     });
                 });
 
-                /* â”€â”€ Collapse / expand â”€â”€ */
+                /* -- Collapse / expand -- */
                 if (toggle) {
                     toggle.addEventListener('click', function(){
                         var open = toggle.getAttribute('aria-expanded') === 'true';
@@ -1774,19 +1774,19 @@ function wptw_frontend_scripts() {
                     });
                 }
 
-                /* â• â•  STICKY BAR â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• 
+                /* = =  STICKY BAR = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
                  *
                  * BEHAVIOUR:
-                 *   When TOC is OPEN â†’ sticky triggers when the TOC HEADER
-                 *   scrolls out of view (hybrid feel â€” header was visible).
-                 *   When TOC is CLOSED â†’ sticky triggers when the whole
+                 *   When TOC is OPEN -> sticky triggers when the TOC HEADER
+                 *   scrolls out of view (hybrid feel -- header was visible).
+                 *   When TOC is CLOSED -> sticky triggers when the whole
                  *   (small) card exits viewport.
                  *
                  *   Either way, the bar matches the card's pixel width and
-                 *   horizontal position â€” NOT full viewport width.
+                 *   horizontal position -- NOT full viewport width.
                  *
                  *   Bar also contains a synced progress bar fill.
-                 * â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+                 * ================================================= */
                 var stickyBar    = null;
                 var barProgFill  = null;
                 var lastBarLeft  = -1;
@@ -1808,7 +1808,7 @@ function wptw_frontend_scripts() {
 
                 if (toc.classList.contains('wptw-toc--sticky') && head) {
 
-                    /* Build bar â€” clone header content */
+                    /* Build bar -- clone header content */
                     stickyBar = document.createElement('div');
                     stickyBar.className = 'wptw-sticky-bar';
                     Array.prototype.slice.call(toc.classList).forEach(function(cls){
@@ -1906,15 +1906,15 @@ function wptw_frontend_scripts() {
                     /* Keep bar positioned and updated on resize */
                     window.addEventListener('resize', checkSticky, { passive:true });
 
-                    /* â”€â”€ Scroll-based sticky trigger (hybrid) â”€â”€
+                    /* -- Scroll-based sticky trigger (hybrid) --
                      *
                      * Strategy: watch the TOC HEADER (not the card).
-                     * - When header scrolls above sticky-top offset â†’ show bar.
-                     * - When header is below that point â†’ hide bar.
+                     * - When header scrolls above sticky-top offset -> show bar.
+                     * - When header is below that point -> hide bar.
                      * This means: if TOC is open, you get the sticky feeling
                      * immediately when the header leaves. If TOC is closed
                      * (header IS the whole card), same behaviour.
-                     * â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+                     * ------------------------------------------- */
                     var isBarVisible = false;
 
                     function checkSticky() {
@@ -1949,7 +1949,7 @@ function wptw_frontend_scripts() {
                     if (icon) icon.style.transform = isOpen ? '' : 'rotate(-90deg)';
                 }
 
-                /* â•â• READING PROGRESS + TIME COUNTDOWN â•â•â•â•â•â•â•â•â•â•â•â•â• */
+                /* == READING PROGRESS + TIME COUNTDOWN ============= */
                 if (cfg.readingProgress || rtSpan) {
                     var totalMins = rtSpan ? parseFloat(rtSpan.dataset.totalMins) || 0 : 0;
 
@@ -2003,7 +2003,7 @@ function wptw_frontend_scripts() {
 
             }); /* forEach .wptw-toc */
 
-            /* â•â• Smooth scroll â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+            /* == Smooth scroll ====================================== */
             if (cfg.smoothScroll) {
                 document.querySelectorAll('.wptw-toc__link').forEach(function(link){
                     link.addEventListener('click', function(e){
@@ -2017,7 +2017,7 @@ function wptw_frontend_scripts() {
                 });
             }
 
-            /* â•â• Active section highlight â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+            /* == Active section highlight =========================== */
             if (cfg.highlightActive && 'IntersectionObserver' in window) {
                 var p        = cfg.anchorPrefix;
                 var headings = document.querySelectorAll('h2[id^="'+p+'"],h3[id^="'+p+'"],h4[id^="'+p+'"],h5[id^="'+p+'"],h6[id^="'+p+'"]');
@@ -2048,7 +2048,7 @@ function wptw_frontend_scripts() {
                 headings.forEach(function(h){ obs.observe(h); });
             }
 
-            /* â•â• Back-to-top â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+            /* == Back-to-top ======================================== */
             if (cfg.backToTop) {
                 var btn   = document.querySelector('.wptw-btt');
                 var tocEl = document.querySelector('.wptw-toc');
@@ -2087,7 +2087,7 @@ function wptw_frontend_scripts() {
  */
 function wptw_find_root_paragraph( string $content, array $levels ): int|false {
     // All HTML5 block containers that can wrap <p> tags.
-    // Void/inline elements intentionally excluded â€” they cannot nest <p>.
+    // Void/inline elements intentionally excluded -- they cannot nest <p>.
     $containers = 'div|section|article|aside|main|nav|header|footer|figure|figcaption|blockquote|details|summary|fieldset|form|dialog';
 
     $pattern = '/(<\/?(?:' . $containers . '|p|h[2-6])\b[^>]*>)/i';
